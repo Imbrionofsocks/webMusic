@@ -109,13 +109,15 @@
             </div>
         </div>
         <div class="player">
+            <label for="progress">Дора- Ты задолбал меня игнорить</label>
             <audio id="song">
                 <source src="../../src/music/dora.mp3" type="audio/mpeg">
             </audio>
-            <progress value="30" max="100" id="progress"></progress>
+            <input type="range" value="0" id="progress" style="background: lightgray">
             <div class="controls">
                 <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
-                <img class="controls-butt" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
+                <img class="controls-butt" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
+                <img class="controls-butt" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
                 <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
             </div>
 
@@ -125,14 +127,41 @@
 <script>
     let progress = document.getElementById("progress");
     let song = document.getElementById("song");
-    let controlButt = document.getElementById("play");
     song.onloadeddata=function (){
         progress.max=song.duration;
         progress.value=song.currentTime;
     }
     function playPause(){
-        song.play();
+        if(document.getElementById("pause").hidden){
+            song.play();
+            document.getElementById("pause").removeAttribute("hidden")
+            document.getElementById("play").setAttribute("hidden", "hidden")
+        }else{
+            song.pause();
+            document.getElementById("play").removeAttribute("hidden")
+            document.getElementById("pause").setAttribute("hidden", "hidden")
+        }
+
     }
+    if(song.play()){
+        setInterval(()=>{
+            progress.value=song.currentTime;
+            updateProgressGradient()
+    },500)
+    }
+
+    progress.oninput = function() {
+        song.play()
+        song.currentTime = progress.value;
+        updateProgressGradient();
+        document.getElementById("pause").removeAttribute("hidden");
+        document.getElementById("play").setAttribute("hidden", "hidden");
+    }
+    function updateProgressGradient() {
+        let value = (progress.value / progress.max) * 100;
+        progress.style.background = `linear-gradient(to right, #ffd000 ${value}%, #757575 ${value}%)`;
+    }
+
 </script>
 </body>
 </html>
