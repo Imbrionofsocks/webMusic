@@ -11,6 +11,7 @@
 </head>
 <body>
 <div class="wrapper">
+    <div class="bg-image"></div>
     <div class="main-container">
         <div class="header-container">
             <div class="image"></div>
@@ -20,12 +21,12 @@
         </div>
         <div class="fieldset-main-container">
             <div class="left-column">
-            <div class="fieldset-container">
-                <div class="fieldset-inner-container">
+                <div class="fieldset-container">
+                    <div class="fieldset-inner-container">
+                    </div>
+                    <div class="fieldset-inner-container">
+                    </div>
                 </div>
-                <div class="fieldset-inner-container">
-                </div>
-            </div>
                 <div class="fieldset-container">
                     <div class="fieldset-inner-container">
                     </div>
@@ -39,29 +40,99 @@
             </div>
             <div class="right-column">
                 <div class="playlist-container">
-                    <div class="playlist-data-container">
+                        <div class="playlist-data-container">
                     </div>
                     <div class="track-container">
-                        <button class="play-button" value="▶"></button>
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                     <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                     <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                     <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                     <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                     <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="player">
+            <audio id="song">
+                <source src="../../src/music/dora.mp3" type="audio/mpeg">
+            </audio>
+            <progress value="30" max="100" id="progress"></progress>
+            <div class="controls">
+                <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
+                <img class="controls-butt" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
+                <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
+            </div>
+
         </div>
     </div>
 </div>
-</div>
-</div>
+<script>
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("song");
+    let controlButt = document.getElementById("play");
+    song.onloadeddata=function (){
+        progress.max=song.duration;
+        progress.value=song.currentTime;
+    }
+    function playPause(){
+        song.play();
+    }
+</script>
 </body>
 </html>
