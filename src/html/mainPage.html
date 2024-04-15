@@ -22,35 +22,38 @@
         <div class="fieldset-main-container">
             <div class="left-column">
                 <div class="fieldset-container">
-                    <div class="fieldset-inner-container">
-                    </div>
+                    <div class="fieldset-inner-container" style="background-image:url(../../src/pics/chart-pic.png);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        </div>
                     <div class="fieldset-inner-container">
                     </div>
                 </div>
                 <div class="fieldset-container">
                     <div class="fieldset-inner-container">
-                        <div class="fieldset-inner-container"  id="1" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container"  id="1" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="1">Дора</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="fieldset-inner-container"  id="2" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container"  id="2" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="2">Дора</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="fieldset-inner-container"  id="3" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container"  id="3" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="3">Дора</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="fieldset-inner-container"  id="4" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container"  id="4" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
@@ -133,23 +136,27 @@
             <audio id="song">
                 <source src="../../src/music/dora.mp3" type="audio/mpeg">
             </audio>
-            <input type="range" value="0" id="progress" style="background: lightgray">
+            <input type="range" value="0" id="progress" style="background: #757575">
             <div class="controls">
                 <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
                 <img class="controls-butt" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
                 <img class="controls-butt" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
                 <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
+                <input type="range" value="100" min="0" max="100" id="volume"  style="background: #757575">
             </div>
-
         </div>
     </div>
 </div>
 <script>
     let progress = document.getElementById("progress");
     let song = document.getElementById("song");
+    let volume = document.getElementById("volume")
     song.onloadeddata=function (){
         progress.max=song.duration;
         progress.value=song.currentTime;
+        song.volume=0.4;
+        volume.value=40;
+        updateVolumeGradient()
     }
     function playPause(){
         if(document.getElementById("pause").hidden){
@@ -177,11 +184,47 @@
         document.getElementById("pause").removeAttribute("hidden");
         document.getElementById("play").setAttribute("hidden", "hidden");
     }
+    volume.oninput = function() {
+        song.volume = volume.value/100;
+        updateVolumeGradient();
+    }
     function updateProgressGradient() {
         let value = (progress.value / progress.max) * 100;
         progress.style.background = `linear-gradient(to right, #ffd000 ${value}%, #757575 ${value}%)`;
     }
+    function updateVolumeGradient() {
+        volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        var playlistContainer = document.querySelector('.playlist-container');
+        var toggleElements = document.querySelectorAll('.fieldset-inner-container');
+        var lastClickedElement = null;
 
+        toggleElements.forEach(function(element) {
+            element.addEventListener('click', async function() {
+                if (lastClickedElement === element) {
+                    playlistContainer.classList.remove('active');
+                    lastClickedElement = null; // Сброс значения переменной
+                } else {
+                    if (playlistContainer.classList.contains('active')) {
+                        playlistContainer.classList.remove('active');
+                        await new Promise(resolve => setTimeout(resolve, 600)); // Ждем завершения анимации
+                        lastClickedElement = null; // Сброс значения переменной
+                    }
+                    playlistContainer.classList.add('active');
+                    lastClickedElement = element;
+                }
+            });
+        });
+
+        // Закрываем список при клике вне него
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.playlist-container') && !event.target.closest('.fieldset-inner-container')) {
+                playlistContainer.classList.remove('active');
+                lastClickedElement = null; // Сброс значения переменной
+            }
+        });
+    });
 </script>
 </body>
 </html>

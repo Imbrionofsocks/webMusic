@@ -61,7 +61,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  border: 1px solid #757575;
+  //border: 1px solid #757575;
   border-radius: var(--border-l);
   margin: 0.5rem auto auto;
   .image{
@@ -76,8 +76,8 @@ body {
   }
   .user-image{
     cursor: pointer;
-    width: 6%;
-    height: 80%;
+    width: 4rem;
+    height: 4rem;
     background-image: url("../../src/pics/user.jpg");
     border-radius: 50%;
     background-position: center;
@@ -88,7 +88,8 @@ body {
     margin:0;
     width:70%;
     height:50%;
-    border-color: #757575
+    border-color: #757575;
+    color:#757575;
   }
   label{
     margin:0;
@@ -102,7 +103,10 @@ body {
   align-items: center;
   overflow: hidden;
   flex-direction:row;
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  gap:8px;
 }
 .fieldset-main-container {
   display: flex;
@@ -110,7 +114,7 @@ body {
   height: 72%;
   align-items: flex-start;
   //border: 1px solid #757575;
-  border-radius: 44px;
+  border-radius: 8px;
   overflow: hidden;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -123,11 +127,13 @@ body {
     align-items: center;
     overflow: hidden;
     flex-direction:column;
-    border: 1px solid #757575;
-    border-radius: 44px;
+    //border: 1px solid #757575;
+    border-radius: 8px;
+    gap:8px;
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
   .right-column {
+    position: relative;
     display: flex;
     flex:0.8;
     width: 100%;
@@ -135,8 +141,8 @@ body {
     align-items: center;
     overflow: hidden;
     flex-direction:column;
-    border: 1px solid #757575;
-    border-radius: 44px;
+    //border: 1px solid #757575;
+    border-radius: 8px;
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
 }
@@ -173,13 +179,17 @@ body {
   flex-direction:row;
   flex-wrap:wrap;
   justify-content: space-around;
+  position: absolute;
+  left: 100%; /* Начальное положение справа от видимой области */
+  transition: left 0.5s; /* Анимация продолжительностью 0.5 секунды */
   .track-container {
     display: flex;
     width: 95%;
     height: 72px;
-    align-items: center;
-    border: 1px solid #757575;
-    border-radius: 24px;
+    align-items: flex-start;
+    align-content: center;
+    //border: 2px solid #757575;
+    border-radius: 8px;
     overflow: hidden;
     justify-content: flex-start;
     flex-direction: row;
@@ -193,18 +203,20 @@ body {
     overflow: hidden;
     justify-content: center;
     margin-bottom: 0.1rem;
-    border-bottom: 1px solid #757575;
-    border-bottom-left-radius: 48px;
-    border-bottom-right-radius: 48px;
-    background-color: #757575;
+    border:2px solid white;
+    border-radius: 2px;
+    background-color: white;
   }
+}
+.playlist-container.active {
+  left: 0; /* Конечное положение в рамках `right-column` */
 }
 .play{
   height:50px;
   width:50px;
   cursor: pointer;
   line-height: 0;
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  //margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   text-decoration-color: black;
   border-radius:50%;
   padding:0;
@@ -213,29 +225,62 @@ body {
     padding-left:8px;
   }
 }
+
 .fieldset-inner-container {
   display: flex;
   width: 100%;
   height: 100%;
   flex-direction: column;
   align-items: center;
-  //border: 1px solid rgba(82, 82, 82, 0.3);
-  border-radius: 44px;
+  border:2px solid white;
+  border-radius: 8px;
   overflow: hidden;
-  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  //margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   justify-content: center;
-  //background-color: rgba(82, 82, 82, 0.3);
-  //background-color: rgba(255, 255, 255, 0.8)
-  /*background-image: url("../../src/pics/dora.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;*/
+  transition: all 0.1s linear;
+
+  .play {
+    display: none; /* Сначала скрываем кнопку */
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    line-height: 0;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    text-decoration-color: black;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+    z-index:1;
+    .play-icon {
+      padding-left: 8px;
+    }
+  }
+}
+
+
+
+  .playlist-inner-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    overflow: hidden;
+    justify-content: center;
+  }
   label{
     margin:0;
     color:#757575;
   }
-}
 
+.fieldset-inner-container:hover{
+  border: 2px solid #ffd000;
+}
+.fieldset-inner-container:hover .play{
+  display: block; /* Показываем кнопку при наведении на div.playlist */
+}
 
 .player{
   display: flex;
@@ -243,8 +288,8 @@ body {
   height: 10%;
   align-items: center;
   align-content: center;
-  border: 1px solid #757575;
-  border-radius: 44px;
+  //border: 1px solid #757575;
+  border-radius: 8px;
   overflow: hidden;
   margin-bottom: 0.5rem;
   background-color: #121212;
@@ -263,16 +308,31 @@ body {
     width: 100%;
     cursor: pointer;
     margin-bottom: 0.1rem;
+    outline: none;
   }
   #progress::-webkit-slider-thumb{
+    visibility:hidden;
+  }
+  #volume{
+    -webkit-appearance: none;
+    height: 0.2rem;
+    width: 40%;
+    cursor: pointer;
+    margin-bottom: 0.1rem;
+    outline: none;
+    margin-left:1%;
+  }
+  #volume::-webkit-slider-thumb{
     visibility:hidden;
   }
   .controls{
     display: flex;
     flex-direction: row;
-    width: 10%;
-    justify-content: space-between;
-    margin-left:0.8rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+    padding-left:29%;
   }
   .controls-butt{
     height: 40px;
