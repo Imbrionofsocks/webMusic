@@ -25,12 +25,10 @@
                     <div class="fieldset-inner-container" style="background-image:url(../../src/pics/chart-pic.png);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        </div>
+                    </div>
                     <div class="fieldset-inner-container" style="background-image:url(../../src/pics/random-playlist.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
                     </div>
                 </div>
                 <div class="fieldset-container">
@@ -71,6 +69,9 @@
   background-size: cover;">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label>Душевный плейлист</label>
+                        <div>
+                        <button class="button-yellow close" id="close-playlist">X</button>
+                            </div>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
@@ -100,6 +101,43 @@
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -111,8 +149,8 @@
             <input type="range" value="0" id="progress" style="background: #757575;">
             <div class="controls">
                 <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
-                <img class="controls-butt" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
-                <img class="controls-butt" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
+                <img class="controls-butt play" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
+                <img class="controls-butt pause" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
                 <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
                 <input type="range" value="100" min="0" max="100" id="volume"  style="background: #757575">
             </div>
@@ -167,26 +205,35 @@
     function updateVolumeGradient() {
         volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
     }
-    document.addEventListener('DOMContentLoaded', function() {
-        var playlistContainer = document.querySelector('.playlist-container');
-        var toggleElements = document.querySelectorAll('.fieldset-inner-container');
+    document.addEventListener("DOMContentLoaded", function() {
+        const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
+        const playlistContainer = document.querySelector('.playlist-container');
+        const closePlaylistButton = document.getElementById('close-playlist');
+        let isPlaylistOpen = false;
 
-        toggleElements.forEach(function(element) {
-            element.addEventListener('click', function() {
-                // Проверяем, активен ли уже playlist-container
-                if (playlistContainer.classList.contains('active')) {
+        playlistContainers.forEach(function(container) {
+            container.addEventListener('click', function() {
+                // Если плейлист уже открыт, сначала закрываем его
+                if (isPlaylistOpen) {
                     playlistContainer.classList.remove('active');
+                    // Затем через короткий интервал времени снова открываем его
+                    setTimeout(function() {
+                        playlistContainer.classList.add('active');
+                    }, 550); // Измените значение времени, если необходимо
                 } else {
+                    // Если плейлист закрыт, открываем его только при первом нажатии
                     playlistContainer.classList.add('active');
                 }
+                // Обновляем состояние переменной
+                isPlaylistOpen = true;
             });
         });
 
-        // Закрываем список при клике вне его
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.playlist-container') && !event.target.closest('.fieldset-inner-container')) {
-                playlistContainer.classList.remove('active');
-            }
+        closePlaylistButton.addEventListener('click', function() {
+            // Закрываем плейлист
+            playlistContainer.classList.remove('active');
+            // Сбрасываем состояние переменной
+            isPlaylistOpen = false;
         });
     });
 </script>

@@ -60,7 +60,7 @@ body {
 }
 .header-container {
   width:100%;
-  height:10%;
+  height:100px;
   display: flex;
   align-content: center;
   align-items: center;
@@ -123,17 +123,17 @@ body {
 .fieldset-main-container {
   display: flex;
   width: 100%;
-  height: 72%;
+  height:calc(100% - (200px + 1rem));
   align-items: flex-start;
   //border: 1px solid #757575;
   border-radius: 8px;
   overflow: hidden;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
   flex-direction: row;
+  top:calc(100px + 0.5rem);
+  bottom:calc(100px + 0.5rem);
   position:absolute;
-  top:4.8rem;
-  left:0;
   .left-column {
     display: flex;
     flex:1.2;
@@ -232,7 +232,23 @@ body {
 .playlist-container.active {
   left: 0; /* Конечное положение в рамках `right-column` */
 }
+
 .play{
+  height:50px;
+  width:50px;
+  cursor: pointer;
+  line-height: 0;
+  //margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  text-decoration-color: black;
+  border-radius:50%;
+  padding:0;
+  margin:0;
+  text-align:center;
+  .play-icon{
+    padding-left:8px;
+  }
+}
+.close{
   height:50px;
   width:50px;
   cursor: pointer;
@@ -307,10 +323,9 @@ body {
 .player{
   display: flex;
   width: 100%;
+  height: 100px;
   align-items: center;
   //border: 1px solid #757575;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
   background-color: #121212;
   flex-direction:column;
   padding:0 12px;
@@ -319,6 +334,7 @@ body {
   position: absolute;
   bottom:0;
   left:0;
+  margin-top: 0.5rem;
   label{
     font-size: var(--font-l);;
     margin:0;
@@ -415,6 +431,10 @@ body {
   .main-container {
     width:var(--screen-s);
   }
+  .fieldset-main-container{
+    flex-grow:1;
+    overflow: hidden;
+  }
   .header-container{
     .image{
       height:3rem;
@@ -432,28 +452,50 @@ body {
     width:95%;
   }
   .fieldset-main-container{
-    overflow: auto;
+    flex-grow:1;
+    overflow-y: auto;
     .left-column{
       overflow: auto;
       height: auto;
     }
     .right-column{
-      //bottom: 100%; /* Начальное положение справа от видимой области */
-     // transition: bottom.5s; /* Анимация продолжительностью 0.5 секунды */
-      position:absolute;
-      height: 100%;
-      .playlist-container{
-          position: fixed;  /* Фиксируем позицию элемента */
-          top: 0;           /* Размещаем вверху экрана */
-          left: 0;          /* Начальное положение слева (за пределами экрана) */
-          height: 100%;     /* Высота контейнера равна высоте экрана */
-          width: 100%;      /* Ширина контейнера равна ширине экрана */
-          transform: translateX(-100%); /* Начальное смещение */
-          transition: transform 0.5s;   /* Плавная анимация */
-          will-change: transform;       /* Оптимизация производительности анимации */
+      border-radius: 0;
+      position:fixed;
+      margin:0;
+      display:none;
+      height:calc(100% - 200px - 0.5rem);
+      @keyframes anim {
+        0% {display:none;
+          left:100%;
         }
-        .playlist-container.active {
-          transform: translateX(0%); /* Конечное положение внутри видимой области экрана */
+        1%{
+          display:flex;
+          left:100%;
+        }
+        100%{
+          right:0;
+          display:flex;
+          flex-grow:1;
+        }
+      }
+      @keyframes animb {
+        0% {
+          display:flex;
+          right:0;
+          flex-grow:1;
+        }
+        99.9%{
+          display:flex;
+          left:100%;
+        }
+        100%{
+          left:100%;;
+          display:none;
+        }
+      }
+      .playlist-container{
+        height: 100%;
+        border-radius: 0;
         }
         .track-container{
           label{
@@ -462,13 +504,24 @@ body {
         }
       }
     }
+  .right-column:has(>.active){
+    animation: 0.5s anim forwards;
+    display: flex;
+    left:0;
+    flex-grow:1;
+  }
+  .right-column:not(:has(>.active)){
+    animation: 1.5s animb forwards;
   }
   .player {
     #volume {
       width: var(--volume-s);
     }
-    label{
+
+    label {
       font-size: var(--font-m);
     }
   }
 }
+
+
