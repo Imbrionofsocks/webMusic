@@ -249,8 +249,8 @@ body {
   }
 }
 .close{
-  height:50px;
-  width:50px;
+  height:36px;
+  width:36px;
   cursor: pointer;
   line-height: 0;
   //margin: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -259,9 +259,20 @@ body {
   padding:0;
   margin:0;
   text-align:center;
-  .play-icon{
-    padding-left:8px;
-  }
+}
+.add{
+  height:36px;
+  width:36px;
+  cursor: pointer;
+  line-height: 0;
+  //margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  text-decoration-color: black;
+  border-radius:50%;
+  padding:0;
+  margin:0 0.5rem 0 0;
+  position:absolute;
+  right:0;
+  text-align:center;
 }
 
 .fieldset-inner-container {
