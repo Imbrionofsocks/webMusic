@@ -346,9 +346,9 @@
         });
 
         closePlaylistButton.addEventListener('click', function() {
-
             // Закрываем плейлист
             playlistContainer.classList.remove('active');
+            document.querySelector('.loader-container').classList.remove('active');
             // Сбрасываем состояние переменной
             isPlaylistOpen = false;
         });
