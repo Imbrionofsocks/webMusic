@@ -49,7 +49,7 @@
                         <label for="2">Дора</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="3" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container"  id="3" style="background-color:white;;background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
@@ -66,39 +66,49 @@
             </div>
             <div class="right-column">
                 <div class="playlist-container">
-                        <div class="playlist-data-container">
+                    <div class="playlist-data-container"  style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label>Душевный плейлист</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Дора-Задолбал меня игнорить</label>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="player">
-            <label for="progress">Дора- Ты задолбал меня игнорить</label>
+            <label for="progress">Ты задолбал меня игнорить - Дора</label>
             <audio id="song">
                 <source src="../../src/music/dora.mp3" type="audio/mpeg">
             </audio>
-            <input type="range" value="0" id="progress" style="background: #757575">
+            <input type="range" value="0" id="progress" style="background: #757575;">
             <div class="controls">
                 <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
                 <img class="controls-butt" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
@@ -160,30 +170,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         var playlistContainer = document.querySelector('.playlist-container');
         var toggleElements = document.querySelectorAll('.fieldset-inner-container');
-        var lastClickedElement = null;
 
         toggleElements.forEach(function(element) {
-            element.addEventListener('click', async function() {
-                if (lastClickedElement === element) {
+            element.addEventListener('click', function() {
+                // Проверяем, активен ли уже playlist-container
+                if (playlistContainer.classList.contains('active')) {
                     playlistContainer.classList.remove('active');
-                    lastClickedElement = null; // Сброс значения переменной
                 } else {
-                    if (playlistContainer.classList.contains('active')) {
-                        playlistContainer.classList.remove('active');
-                        await new Promise(resolve => setTimeout(resolve, 600)); // Ждем завершения анимации
-                        lastClickedElement = null; // Сброс значения переменной
-                    }
                     playlistContainer.classList.add('active');
-                    lastClickedElement = element;
                 }
             });
         });
 
-        // Закрываем список при клике вне него
+        // Закрываем список при клике вне его
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.playlist-container') && !event.target.closest('.fieldset-inner-container')) {
                 playlistContainer.classList.remove('active');
-                lastClickedElement = null; // Сброс значения переменной
             }
         });
     });
