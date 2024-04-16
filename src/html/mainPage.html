@@ -8,6 +8,43 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../out/css/milligram.css">
     <link rel="stylesheet" href="../../out/css/mainStyle.css">
+    <style>
+        /* Дополнительные стили для поля поиска и результатов */
+        .dropdown-content {
+            position: absolute;
+            top: 100%; /* Располагаем под полем поиска */
+            left: 20%;
+            font-size:24px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: scroll;
+            display: none;
+            z-index: 999; /* Позволяет результатам поиска отображаться поверх других элементов */
+            width: 400px; /* Выравниваем по ширине поля поиска */
+        }
+        .dropdown-content.active {
+            display: block;
+        }
+        .dropdown-content ul {
+            list-style-type: none;
+            margin: 0;
+            border-top: 1px solid #757575;
+            overflow-y:hidden;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color: white;
+            padding:0.5rem;
+        }
+        .dropdown-content ul li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .dropdown-content ul li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -17,7 +54,13 @@
             <div class="image"></div>
             <label for="searchInput">Поиск</label>
             <input type="text" placeholder="Введите название трека" id="searchInput">
-            <div class="user-image"></div>
+            <!-- Выпадающий список с результатами -->
+            <div class="dropdown-content" id="searchDropdown">
+                <ul id="results-list">
+                    <!-- Результаты поиска будут отображаться здесь -->
+                </ul>
+            </div>
+        <div class="user-image"></div>
         </div>
         <div class="fieldset-main-container">
             <div class="left-column">
@@ -234,6 +277,42 @@
             // Сбрасываем состояние переменной
             isPlaylistOpen = false;
         });
+    });
+    // JavaScript для работы с полем поиска и результатами
+    const searchInput = document.getElementById('searchInput');
+    const searchDropdown = document.getElementById('searchDropdown');
+    const resultsList = document.getElementById('results-list');
+
+    function fillResults(results) {
+        resultsList.innerHTML = '';
+        results.forEach(result => {
+            const li = document.createElement('li');
+            li.textContent = result;
+            resultsList.appendChild(li);
+        });
+        if (results.length > 0) {
+            searchDropdown.classList.add('active');
+        } else {
+            searchDropdown.classList.remove('active');
+        }
+    }
+
+    function hideResults() {
+        searchDropdown.classList.remove('active');
+    }
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        // Ваша логика поиска может быть здесь
+        const results = ['Результат 1', 'Результат 2', 'Результат 3'].filter(result => result.toLowerCase().includes(query));
+        fillResults(results);
+    });
+
+    document.addEventListener('click', function(event) {
+        const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
+        if (!isClickInside) {
+            hideResults();
+        }
     });
 </script>
 </body>
