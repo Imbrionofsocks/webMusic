@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../out/css/milligram.css">
+    <link rel="stylesheet" href="../../out/css/adminStyle.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="bg-image"></div>
+    <div class="main-container">
+        <div class="header-container">
+            <div class="image"></div>
+            <div class="header-search">
+                <div class="header-input">
+                    <label for="searchInput">Поиск</label>
+                    <input type="text" placeholder="Введите название трека" id="searchInput">
+                </div>
+                <div class="dropdown-content" id="searchDropdown">
+                    <ul id="results-list">
+                    </ul>
+                </div>
+                <div class="user-image"></div>
+            </div>
+        </div>
+        <div class="fieldset-main-container">
+            <div class="right-column">
+                <div class="loader-container">
+                    <div class="loader"></div>
+                </div>
+                <div class="playlist-container">
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                        <button class="button-yellow add" id="add-to-playlist"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                        <button class="button-yellow delete" id="delete-song"><img src="../../src/pics/minus.svg" alt="Удалить с площадки"></button>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+                    <div class="track-container">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="player">
+            <label for="progress">Ты задолбал меня игнорить - Дора</label>
+            <audio id="song">
+                <source src="../../src/music/dora.mp3" type="audio/mpeg">
+            </audio>
+            <input type="range" value="0" id="progress" style="background: #757575;">
+            <div class="controls">
+                <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
+                <img class="controls-butt play" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
+                <img class="controls-butt pause" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
+                <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
+                <input type="range" value="100" min="0" max="100" id="volume"  style="background: #757575">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("song");
+    let volume = document.getElementById("volume")
+    song.onloadeddata=function (){
+        progress.max=song.duration;
+        progress.value=song.currentTime;
+        song.volume=0.4;
+        volume.value=40;
+        updateVolumeGradient()
+    }
+    function playPause(){
+        if(document.getElementById("pause").hidden){
+            song.play();
+            document.getElementById("pause").removeAttribute("hidden")
+            document.getElementById("play").setAttribute("hidden", "hidden")
+        }else{
+            song.pause();
+            document.getElementById("play").removeAttribute("hidden")
+            document.getElementById("pause").setAttribute("hidden", "hidden")
+        }
+
+    }
+    if(song.play()){
+        setInterval(()=>{
+            progress.value=song.currentTime;
+            updateProgressGradient()
+        },500)
+    }
+
+    progress.oninput = function() {
+        song.play()
+        song.currentTime = progress.value;
+        updateProgressGradient();
+        document.getElementById("pause").removeAttribute("hidden");
+        document.getElementById("play").setAttribute("hidden", "hidden");
+    }
+    volume.oninput = function() {
+        song.volume = volume.value/100;
+        updateVolumeGradient();
+    }
+    function updateProgressGradient() {
+        let value = (progress.value / progress.max) * 100;
+        progress.style.background = `linear-gradient(to right, #ffd000 ${value}%, #757575 ${value}%)`;
+    }
+    function updateVolumeGradient() {
+        volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
+        const playlistContainer = document.querySelector('.playlist-container');
+        const closePlaylistButton = document.getElementById('close-playlist');
+        let isPlaylistOpen = false;
+
+        playlistContainers.forEach(function(container) {
+            container.addEventListener('click', function() {
+                // Если плейлист уже открыт, сначала закрываем его
+                if (isPlaylistOpen) {
+                    playlistContainer.classList.remove('active');
+                    document.querySelector('.loader-container').classList.add('active');
+                    // Затем через короткий интервал времени снова открываем его
+                    setTimeout(function() {
+                        playlistContainer.classList.add('active');
+                        document.querySelector('.loader-container').classList.remove('active');
+                        // When the server starts loading data, show the loader
+                    }, 900 ); // Измените значение времени, если необходимо
+                } else {
+                    document.querySelector('.loader-container').classList.add('active');
+                    // Если плейлист закрыт, открываем его только при первом нажатии
+                    playlistContainer.classList.add('active');
+                }
+                // Обновляем состояние переменной
+                isPlaylistOpen = true;
+            });
+        });
+
+        closePlaylistButton.addEventListener('click', function() {
+            // Закрываем плейлист
+            playlistContainer.classList.remove('active');
+            document.querySelector('.loader-container').classList.remove('active');
+            // Сбрасываем состояние переменной
+            isPlaylistOpen = false;
+        });
+    });
+    // JavaScript для работы с полем поиска и результатами
+    const searchInput = document.getElementById('searchInput');
+    const searchDropdown = document.getElementById('searchDropdown');
+    const resultsList = document.getElementById('results-list');
+
+    function fillResults(results) {
+        resultsList.innerHTML = '';
+        results.forEach(result => {
+            const li = document.createElement('li');
+            li.textContent = result;
+            resultsList.appendChild(li);
+        });
+        if (results.length > 0) {
+            searchDropdown.classList.add('active');
+        } else {
+            searchDropdown.classList.remove('active');
+        }
+    }
+
+    function hideResults() {
+        searchDropdown.classList.remove('active');
+    }
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        // Ваша логика поиска может быть здесь
+        const results = ['Дора', 'МакSим', 'SHAMAN','Даня'].filter(result => result.toLowerCase().includes(query));
+        fillResults(results);
+    });
+
+    document.addEventListener('click', function(event) {
+        const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
+        if (!isClickInside) {
+            hideResults();
+        }
+    });
+</script>
+</body>
+</html>
