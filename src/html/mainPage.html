@@ -226,11 +226,15 @@
                 // Если плейлист уже открыт, сначала закрываем его
                 if (isPlaylistOpen) {
                     playlistContainer.classList.remove('active');
+                    document.querySelector('.loader-container').classList.add('active');
                     // Затем через короткий интервал времени снова открываем его
                     setTimeout(function() {
                         playlistContainer.classList.add('active');
-                    }, 550); // Измените значение времени, если необходимо
+                        document.querySelector('.loader-container').classList.remove('active');
+                        // When the server starts loading data, show the loader
+                    }, 900 ); // Измените значение времени, если необходимо
                 } else {
+                    document.querySelector('.loader-container').classList.add('active');
                     // Если плейлист закрыт, открываем его только при первом нажатии
                     playlistContainer.classList.add('active');
                 }
@@ -242,6 +246,7 @@
         closePlaylistButton.addEventListener('click', function() {
             // Закрываем плейлист
             playlistContainer.classList.remove('active');
+            document.querySelector('.loader-container').classList.remove('active');
             // Сбрасываем состояние переменной
             isPlaylistOpen = false;
         });
