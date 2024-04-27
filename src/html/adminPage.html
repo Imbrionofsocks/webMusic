@@ -10,9 +10,20 @@
     <link rel="stylesheet" href="../../out/css/adminStyle.css">
 </head>
 <body>
+<div class="popup__bg">
+    <form class="popup" style="margin:0;overflow:hidden;">
+        <label for="trackName">Название</label>
+        <input type="text" placeholder="Введите название трека" id="trackName">
+        <label for="authorName">Автор</label>
+        <input type="text" placeholder="Введите автора" id="authorName">
+        <label id="upload-label" for="file-input" >Загрузить файл</label>
+        <input id="file-input" type="file" name="file" multiple>
+        <button class="button-yellow">Добавить!</button>
+    </form>
+</div>
 <div class="wrapper">
     <div class="bg-image"></div>
-    <div class="main-container">
+    <div class="main-container" id="mainContainer">
         <div class="header-container">
             <div class="image"></div>
             <div class="header-search">
@@ -28,6 +39,14 @@
             </div>
         </div>
         <div class="fieldset-main-container">
+            <div class="left-column">
+                <div class="fieldset-container">
+                    <div class="fieldset-inner-container" id="addTrack" style="background-image:url(../../src/pics/add_tracp.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                    </div>
+                </div>
+            </div>
             <div class="right-column">
                 <div class="loader-container">
                     <div class="loader"></div>
@@ -167,7 +186,8 @@
     function updateVolumeGradient() {
         volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
     }
-    document.addEventListener("DOMContentLoaded", function() {
+
+    /*document.addEventListener("DOMContentLoaded", function() {
         const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
         const playlistContainer = document.querySelector('.playlist-container');
         const closePlaylistButton = document.getElementById('close-playlist');
@@ -202,7 +222,8 @@
             // Сбрасываем состояние переменной
             isPlaylistOpen = false;
         });
-    });
+    });*/
+
     // JavaScript для работы с полем поиска и результатами
     const searchInput = document.getElementById('searchInput');
     const searchDropdown = document.getElementById('searchDropdown');
@@ -239,6 +260,29 @@
             hideResults();
         }
     });
+    let popupBg = document.querySelector('.popup__bg'); // Фон попап окна
+    let popup = document.querySelector('.popup'); // Само окно
+
+    document.getElementById('mainContainer')
+        .addEventListener('click', event => { // Step 2
+            if (event.target.className === 'button-yellow add') { // Step 3
+                console.log('click!')
+                popupBg.classList.add('active'); // Добавляем класс 'active' для фона
+                popup.classList.add('active'); // И для самого окна
+            }
+        });
+    document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
+        if(e.target === popupBg) { // Если цель клика - фот, то:
+            popupBg.classList.remove('active'); // Убираем активный класс с фона
+            popup.classList.remove('active'); // И с окна
+        }
+    });
+        document.getElementById('addTrack').addEventListener('click', event => { // Step 2
+                    console.log('click!')
+                    popupBg.classList.add('active'); // Добавляем класс 'active' для фона
+                    popup.classList.add('active'); // И для самого окна
+
+        });
 </script>
 </body>
 </html>

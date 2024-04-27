@@ -191,7 +191,7 @@ body {
   bottom:calc(100px + 0.5rem);
   position:absolute;
   .fieldset-container {
-    display: grid;
+    display: flex;
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -222,7 +222,7 @@ body {
   }
   .left-column {
     display: flex;
-    flex:1.2;
+    flex:0.8;
     width: 100%;
     height: 96%;
     align-items: center;
@@ -234,16 +234,16 @@ body {
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
   .right-column {
-    position: absolute;
+    position: relative;
     display: flex;
-    flex:1;
+    flex:1.2;
     width: 100%;
     height: 96%;
     align-items: center;
     overflow: hidden;
     flex-direction:column;
     //border: 1px solid #757575;
-    border-radius: 8px;
+    border-radius: 10px;
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
 }
@@ -611,11 +611,11 @@ label{
   .main-container {
     width: var(--screen-s);
   }
-  .fieldset-main-container {
-    .fieldset-container {
-      grid-template-columns: repeat(2, 1fr);
-      border-radius: var(--border-s);
-    }
+  .fieldset-main-container{
+    flex-direction: column;
+    align-items: center;
+    flex-grow:1;
+    overflow: hidden;
   }
   .header-container {
     .image {
@@ -657,6 +657,8 @@ label{
   .fieldset-main-container {
     flex-grow: 1;
     overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
 
     .player {
       #volume {
@@ -681,13 +683,10 @@ label{
       width: var(--screen-s);
     }
     .fieldset-main-container {
+      flex-direction: column;
+      align-items: center;
       flex-grow: 1;
       overflow: hidden;
-
-      .fieldset-container {
-        grid-template-columns: repeat(2, 1fr);
-        border-radius: var(--border-s);
-      }
     }
     .header-container {
       .image {
@@ -728,9 +727,10 @@ label{
       width: 95%;
     }
     .fieldset-main-container {
+      flex-direction: column;
+      align-items: center;
       flex-grow: 1;
       overflow-y: auto;
-
       .left-column {
         overflow: auto;
         height: auto;
@@ -746,5 +746,113 @@ label{
       }
     }
   }
+.popup__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  opacity: 0; // Скрываем фон и сам попап
+  pointer-events: none; // Запрещаем ему быть целью событий
+  transition: 0.5s all;
+}
 
+.popup__bg.active { // При добавлении класса 'active'
+  opacity: 1; // Показываем фон и попап
+  pointer-events: all; // Возвращаем события
+  transition: 0.5s all;
+  z-index:999;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); // Центрируем и масштабируем в 0 само окно
+  background: #fff;
+  width: 374px;
+  height: 400px;
+  transition: 0.5s all;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  overflow-y:scroll;
+  border-radius: 8px;
+  border:2px solid white;
+  justify-content: center;
+  input[type="file"]{
+    display:none;
+  }
+  #upload-label{
+    color:black;
+    border-radius: 8px;
+    background-color: transparent;
+    margin-bottom: 2px;
+    cursor: pointer;
+  }
+  input{
+    height:2.2rem;
+  }
+  button{
+    height:2.6rem;
+    display: flex;
+    margin:0;
+    align-items: center;
+  }
+  .track-container {
+    display: flex;
+    width: 100%;
+    height: 72px;
+    align-items: center;
+    align-content: center;
+    border-top: 1px solid #757575;
+    overflow: hidden;
+    justify-content: center;
+    flex-direction: row;
+    background-color: white;
+    padding:0.5rem;
+    label{
+      font-size:var(--font-l);;
+    }
+    img{
+      pointer-events: none;
+    }
+  }
+}
+.popup::-webkit-scrollbar {
+  width: 2px;
+}
+
+.popup::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 8px;
+}
+
+.popup::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+.popup::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.popup.active { // При добавлении класса 'active'
+  transform: translate(-50%, -50%) scale(1); // Так же центрируем и плавно увеличиваем
+  transition: 0.5s all;
+}
+/* Конец важной части */
+/* Далее код для стилизации формы */
+.close-popup {
+  position: sticky;
+  top: 0;
+  left: 350px;
+  height:36px;
+  width: 36px;
+  cursor: pointer;
+  z-index:100;
+}
+img{
+  pointer-events: none;
+}
 
