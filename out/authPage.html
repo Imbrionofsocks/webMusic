@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../../out/css/milligram.css">
-    <link rel="stylesheet" href="../../out/css/authStyle.css">
+    <link rel="stylesheet" href="css/milligram.css">
+    <link rel="stylesheet" href="css/authStyle.css">
 </head>
 <body>
 <div class="wrapper">
@@ -26,4 +26,37 @@
     </div>
 </div>
 </body>
+
+<script>
+
+    document.getElementById('AuthButton').addEventListener('click', () => {
+
+        const User = {
+            email: document.getElementById('mailField').value,
+            password: document.getElementById('passField').value
+        }
+        fetch(
+            "/authorization",
+            {
+                method: "POST",
+                body: JSON.stringify(User),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            },
+        ).then(res => res.json()
+        ).then(res=>{
+            if(res.result){
+                alert("Вход выполнен успешно")
+                window.location = "/sss.html";
+            }else{
+                alert("Неверный логин или пароль")
+                window.location = "/ddd.html";
+            }
+        })
+
+    });
+
+</script>
+
 </html>

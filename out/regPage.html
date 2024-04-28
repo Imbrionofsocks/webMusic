@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/milligram.css">
+    <link rel="stylesheet" href="css/regStyle.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <div class="fieldset-container">
+            <div class="image"></div>
+            <div class="form-fields">
+                <label>Присоединяйтесь к экипажу BPM!</label>
+                <label for="mailField">E-mail</label>
+                <input type="email" placeholder="example@" id="mailField">
+                <label for="passField">Пароль</label>
+                <input type="password" placeholder="Введите пароль" id="passField">
+                <label for="passFieldC">Подтвердите пароль</label>
+                <input type="password" placeholder="Введите пароль" id="passFieldC">
+                <button class="button-yellow" type="submit">Зарегистрироваться</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    document.getElementById('RegButton').addEventListener('click', () => {
+        if (document.getElementById('passField').value === document.getElementById('passFieldC').value) {
+            const User = {
+                email: document.getElementById('mailField').value,
+                password: document.getElementById('passField').value
+            }
+            fetch(
+                "/registration",
+                {
+                    method: "POST",
+                    body: JSON.stringify(User),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                },
+            ).then(res => res.json()
+            ).then(res=>{
+                if(res.check){
+                    alert("Регистрация успешна")
+                    window.location = "/ddd.html";
+                }else{
+                    alert("email уже занят")
+                    window.location = "/";
+                }
+            })
+
+        }
+
+
+
+
+    });
+
+</script>
+
+</html>
