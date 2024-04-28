@@ -12,6 +12,9 @@
 <body>
 <div class="popup__bg">
     <form class="popup">
+        <div class="playlist-popup-header">
+            <label style="margin-left:0.5rem;display: flex">Добавить в плейлист</label>
+        </div>
         <div class="track-container" style="display: flex;align-items: center">
             <label style="margin-left:0.5rem;display: flex">Дора</label>
         </div>
@@ -72,21 +75,27 @@
     <div class="bg-image"></div>
     <div class="main-container" id="mainContainer">
         <div class="header-container">
-            <div class="image"></div>
+            <div class="image" id="logoImage"></div>
             <div class="header-search">
                 <div class="header-input">
-            <label for="searchInput">Поиск</label>
-            <input type="text" placeholder="Введите название трека" id="searchInput">
-                    </div>
-            <div class="dropdown-content" id="searchDropdown">
-                <ul id="results-list">
-                </ul>
-            </div>
+                    <label for="searchInput">
+                        <span class="search-title">Поиск</span>
+                        <input type="text"
+                               placeholder="Введите название трека"
+                               id="searchInput">
+                        <div class="dropdown-content" id="searchDropdown">
+                            <ul id="results-list">
+                            </ul>
+                        </div>
+                    </label>
+                </div>
                 <div class="user-image"></div>
+                <div class="exit-image"><img style="pointer-events: none;" src="../../src/pics/exit.svg"
+                                             alt="Выйти из учётной записи"></div>
             </div>
         </div>
         <div class="fieldset-main-container">
-            <div class="left-column">
+            <div class="left-column" id="mainLeftColumn">
                 <div class="fieldset-container">
                     <div class="fieldset-inner-container" style="background-image:url(../../src/pics/chart-pic.png);background-position: center;
   background-repeat: no-repeat;
@@ -99,32 +108,176 @@
                 </div>
                 <div class="fieldset-container">
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="1" style="background-color:white; background-image:url(../../src/pics/maksim.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="1" style="background-color:white; background-image:url(../../src/pics/maksim.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="1">МАКSИМ</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="2" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="2" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="2">ДОРА</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="3" style="background-color:white;;background-image:url(../../src/pics/serega.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="3" style="background-color:white;;background-image:url(../../src/pics/serega.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="3">ПИРАТ</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="4" style="background-color:white; background-image:url(../../src/pics/shaman.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="4" style="background-color:white; background-image:url(../../src/pics/shaman.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="4">SHAMAN</label>
+                    </div>
+                </div>
+            </div>
+            <div class="left-column" id="userLeftColumn" style="display: none">
+                <div class="fieldset-container">
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="1" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="1">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="2" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="2">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="3" style="background-color:white;;background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="3">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="4" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="4">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="6" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="6">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="7" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="7">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="8" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="8">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="9" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="9">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="10" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="10">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="11" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="11">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="12" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="12">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="13" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="13">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="14" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="14">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="15" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="15">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="16" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="16">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="17" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="17">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="18" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="18">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="19" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="19">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="20" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="20">Дора</label>
+                    </div>
+                    <div class="fieldset-inner-container">
+                        <div class="playlist-inner-container" id="21" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+                        </div>
+                        <label for="21">Дора</label>
                     </div>
                 </div>
             </div>
@@ -133,17 +286,19 @@
                     <div class="loader"></div>
                 </div>
                 <div class="playlist-container" id="playlistContainer">
-                    <div class="playlist-data-container"  style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                    <div class="playlist-data-container" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label>Душевный плейлист</label>
-                        <button style="position: absolute;top:0;right:0;display:flex;padding-left:2px; align-items: center;justify-content:center" class="button-yellow close" id="close-playlist"><span>✖</span></button>
+                        <button style="position: absolute;top:0;right:0;display:flex;padding-left:2px; align-items: center;justify-content:center"
+                                class="button-yellow close" id="close-playlist"><span>✖</span></button>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                        <button class="button-yellow add" id="add-to-playlist"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                        <button class="button-yellow add" id="add-to-playlist"><img src="../../src/pics/plus.svg"
+                                                                                    alt="Добавить в плейлист"></button>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
@@ -217,80 +372,88 @@
             <input type="range" value="0" id="progress" style="background: #757575;">
             <div class="controls">
                 <img class="controls-butt" src="../../src/pics/backward.svg" alt="backward">
-                <img class="controls-butt play" style="padding-left:1px" src="../../src/pics/play.svg" alt="play" id="play" onclick="playPause()">
-                <img class="controls-butt pause" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden onclick="playPause()">
+                <img class="controls-butt play" style="padding-left:1px" src="../../src/pics/play.svg" alt="play"
+                     id="play" onclick="playPause()">
+                <img class="controls-butt pause" src="../../src/pics/pause.svg" alt="pause" id="pause" hidden
+                     onclick="playPause()">
                 <img class="controls-butt" src="../../src/pics/forward.svg" alt="forward">
-                <input type="range" value="100" min="0" max="100" id="volume"  style="background: #757575">
+                <input type="range" value="100" min="0" max="100" id="volume" style="background: #757575">
             </div>
         </div>
     </div>
 </div>
 <script>
+
     let progress = document.getElementById("progress");
     let song = document.getElementById("song");
     let volume = document.getElementById("volume")
-    song.onloadeddata=function (){
-        progress.max=song.duration;
-        progress.value=song.currentTime;
-        song.volume=0.4;
-        volume.value=40;
+    song.onloadeddata = function () {
+        progress.max = song.duration;
+        progress.value = song.currentTime;
+        song.volume = 0.4;
+        volume.value = 40;
         updateVolumeGradient()
     }
-    function playPause(){
-        if(document.getElementById("pause").hidden){
+
+    function playPause() {
+        if (document.getElementById("pause").hidden) {
             song.play();
             document.getElementById("pause").removeAttribute("hidden")
             document.getElementById("play").setAttribute("hidden", "hidden")
-        }else{
+        } else {
             song.pause();
             document.getElementById("play").removeAttribute("hidden")
             document.getElementById("pause").setAttribute("hidden", "hidden")
         }
 
     }
-    if(song.play()){
-        setInterval(()=>{
-            progress.value=song.currentTime;
+
+    if (song.play()) {
+        setInterval(() => {
+            progress.value = song.currentTime;
             updateProgressGradient()
-    },500)
+        }, 500)
     }
 
-    progress.oninput = function() {
+    progress.oninput = function () {
         song.play()
         song.currentTime = progress.value;
         updateProgressGradient();
         document.getElementById("pause").removeAttribute("hidden");
         document.getElementById("play").setAttribute("hidden", "hidden");
     }
-    volume.oninput = function() {
-        song.volume = volume.value/100;
+    volume.oninput = function () {
+        song.volume = volume.value / 100;
         updateVolumeGradient();
     }
+
     function updateProgressGradient() {
         let value = (progress.value / progress.max) * 100;
         progress.style.background = `linear-gradient(to right, #ffd000 ${value}%, #757575 ${value}%)`;
     }
+
     function updateVolumeGradient() {
         volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
     }
-    document.addEventListener("DOMContentLoaded", function() {
+
+    document.addEventListener("DOMContentLoaded", function () {
         const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
         const playlistContainer = document.querySelector('.playlist-container');
         const closePlaylistButton = document.getElementById('close-playlist');
         let isPlaylistOpen = false;
 
-        playlistContainers.forEach(function(container) {
-            container.addEventListener('click', function() {
+        playlistContainers.forEach(function (container) {
+            container.addEventListener('click', function () {
                 // Если плейлист уже открыт, сначала закрываем его
                 if (isPlaylistOpen) {
                     playlistContainer.classList.remove('active');
                     document.querySelector('.loader-container').classList.add('active');
                     // Затем через короткий интервал времени снова открываем его
-                    setTimeout(function() {
+                    setTimeout(function () {
                         playlistContainer.classList.add('active');
                         document.querySelector('.loader-container').classList.remove('active');
                         // When the server starts loading data, show the loader
-                    }, 900 ); // Измените значение времени, если необходимо
+                    }, 900); // Измените значение времени, если необходимо
                 } else {
                     document.querySelector('.loader-container').classList.add('active');
                     // Если плейлист закрыт, открываем его только при первом нажатии
@@ -301,7 +464,7 @@
             });
         });
 
-        closePlaylistButton.addEventListener('click', function() {
+        closePlaylistButton.addEventListener('click', function () {
             // Закрываем плейлист
             playlistContainer.classList.remove('active');
             document.querySelector('.loader-container').classList.remove('active');
@@ -319,7 +482,7 @@
         results.forEach(result => {
             const li = document.createElement('li');
             resultsList.appendChild(li);
-            li.innerHTML=`<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play"><span class="play-icon">▶</span></button>
+            li.innerHTML = `<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play"><span class="play-icon">▶</span></button>
             <label style="margin-left:0.5rem;display: flex">${result}</label>
             <button class="button-yellow add"><img style="pointer-events: none;" src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button></div>`
         });
@@ -334,17 +497,17 @@
         searchDropdown.classList.remove('active');
     }
 
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         const query = this.value.toLowerCase();
-        const results = ['Дора','Дора1', 'МакSим', 'SHAMAN','ПИРАТ'].filter(result => result.toLowerCase().includes(query));
-        if(query){
+        const results = ['Дора', 'Дора1', 'МакSим', 'SHAMAN', 'ПИРАТ'].filter(result => result.toLowerCase().includes(query));
+        if (query) {
             fillResults(results);
-        }else{
+        } else {
             hideResults();
         }
     });
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
         if (!isClickInside) {
             hideResults();
@@ -362,10 +525,29 @@
             }
         });
     document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
-        if(e.target === popupBg) { // Если цель клика - фот, то:
+        if (e.target === popupBg) { // Если цель клика - фот, то:
             popupBg.classList.remove('active'); // Убираем активный класс с фона
             popup.classList.remove('active'); // И с окна
         }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const userImage = document.querySelector('.user-image');
+        const logoImage = document.getElementById('logoImage');
+        const userPage = document.getElementById('userLeftColumn');
+        const mainPage = document.getElementById('mainLeftColumn');
+
+        userImage.addEventListener('click', function () {
+            if (userPage.style.display === "none" || userPage.style.display === "") {
+                userPage.style.display = "flex";
+                mainPage.style.display = "none";
+            }
+        });
+        logoImage.addEventListener('click', function () {
+            if (mainPage.style.display === "none" || mainPage.style.display === "") {
+                userPage.style.display = "none";
+                mainPage.style.display = "flex";
+            }
+        });
     });
 </script>
 </body>
