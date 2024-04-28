@@ -25,17 +25,23 @@
     <div class="bg-image"></div>
     <div class="main-container" id="mainContainer">
         <div class="header-container">
-            <div class="image"></div>
+            <div class="image" id="logoImage"></div>
             <div class="header-search">
                 <div class="header-input">
-                    <label for="searchInput">Поиск</label>
-                    <input type="text" placeholder="Введите название трека" id="searchInput">
-                </div>
-                <div class="dropdown-content" id="searchDropdown">
-                    <ul id="results-list">
-                    </ul>
+                    <label for="searchInput">
+                        <span class="search-title">Поиск</span>
+                        <input type="text"
+                               placeholder="Введите название трека"
+                               id="searchInput">
+                        <div class="dropdown-content" id="searchDropdown">
+                            <ul id="results-list">
+                            </ul>
+                        </div>
+                    </label>
                 </div>
                 <div class="user-image"></div>
+                <div class="exit-image"><img style="pointer-events: none;" src="../../src/pics/exit.svg"
+                                             alt="Выйти из учётной записи"></div>
             </div>
         </div>
         <div class="fieldset-main-container">
@@ -55,7 +61,6 @@
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                        <button class="button-yellow add" id="add-to-playlist"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
                         <button class="button-yellow delete" id="delete-song"><img src="../../src/pics/minus.svg" alt="Удалить с площадки"></button>
                     </div>
                     <div class="track-container">
@@ -225,6 +230,7 @@
     });*/
 
     // JavaScript для работы с полем поиска и результатами
+
     const searchInput = document.getElementById('searchInput');
     const searchDropdown = document.getElementById('searchDropdown');
     const resultsList = document.getElementById('results-list');
@@ -233,8 +239,10 @@
         resultsList.innerHTML = '';
         results.forEach(result => {
             const li = document.createElement('li');
-            li.textContent = result;
             resultsList.appendChild(li);
+            li.innerHTML = `<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play" style="width: 36px; height: 36px;"><span class="play-icon">▶</span></button>
+            <label style="margin-left:0.5rem;display: flex">${result}</label>
+            <button class="button-yellow delete"><img style="pointer-events: none;" src="../../src/pics/minus.svg" alt="Удалить"></button></div>`
         });
         if (results.length > 0) {
             searchDropdown.classList.add('active');
@@ -247,14 +255,17 @@
         searchDropdown.classList.remove('active');
     }
 
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         const query = this.value.toLowerCase();
-        // Ваша логика поиска может быть здесь
-        const results = ['Дора', 'МакSим', 'SHAMAN','Даня'].filter(result => result.toLowerCase().includes(query));
-        fillResults(results);
+        const results = ['Дора', 'Дора1', 'МакSим', 'SHAMAN', 'ПИРАТ'].filter(result => result.toLowerCase().includes(query));
+        if (query) {
+            fillResults(results);
+        } else {
+            hideResults();
+        }
     });
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
         if (!isClickInside) {
             hideResults();

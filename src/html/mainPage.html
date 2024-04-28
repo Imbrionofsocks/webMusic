@@ -482,7 +482,7 @@
         results.forEach(result => {
             const li = document.createElement('li');
             resultsList.appendChild(li);
-            li.innerHTML = `<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play"><span class="play-icon">▶</span></button>
+            li.innerHTML = `<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play" style="width: 36px; height: 36px;"><span class="play-icon">▶</span></button>
             <label style="margin-left:0.5rem;display: flex">${result}</label>
             <button class="button-yellow add"><img style="pointer-events: none;" src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button></div>`
         });
