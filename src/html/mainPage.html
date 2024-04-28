@@ -389,87 +389,84 @@
                     // Показываем лоадер
                     document.querySelector('.loader-container').classList.add('active');
 
-                    setTimeout(function () {
-                        Promise.race([
-                            fetch('/api/get-tracks').then(response => response.json()),
-                            new Promise((_, reject) => setTimeout(() => reject(new Error('Время ожидания запроса истекло')), 10000))
-                        ])
-                            .then(data => {
-                                const playlistContainer = document.getElementById('playlistContainer');
-                                let htmlContent = '';
-                                data.forEach(track => {
-                                    htmlContent += `
-                            <div class="track-container" id="${track.id}">
-                                <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                                <label style="margin-left:0.5rem">"${track.name}" - "${track.author}"</label>
-                                <button class="button-yellow add" id="play_${track.id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
-                            </div>
-                        `;
-                                });
-                                playlistContainer.innerHTML = htmlContent;
-                                const playButtons = document.querySelectorAll('.track-container .play');
-                                playButtons.forEach(button => {
-                                    button.addEventListener('click', function () {
-                                        const trackId = this.closest('.track-container').id;
-                                        loadAndPlayTrack(trackId);
-                                    });
-                                });
-
-                                // Теперь открываем плейлист
-                                playlistContainer.classList.add('active');
-                                // Убираем лоадер
-                                document.querySelector('.loader-container').classList.remove('active');
-                            })
-                            .catch(error => {
-                                alert(error.message); // Показываем ошибку, если запрос занимает слишком много времени
-                                document.querySelector('.loader-container').classList.remove('active');
+                    Promise.race([
+                        fetch('/api/get-tracks').then(response => response.json()),
+                        new Promise((_, reject) => setTimeout(() => reject(new Error('Время ожидания запроса истекло')), 10000))
+                    ])
+                        .then(data => {
+                            const playlistContainer = document.getElementById('playlistContainer');
+                            let htmlContent = '';
+                            data.forEach(track => {
+                                htmlContent += `
+                        <div class="track-container" id="${track.id}">
+                            <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                            <label style="margin-left:0.5rem">"${track.name}" - "${track.author}"</label>
+                            <button class="button-yellow add" id="play_${track.id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                        </div>
+                    `;
                             });
-                    }, 10000);
+                            playlistContainer.innerHTML = htmlContent;
+                            const playButtons = document.querySelectorAll('.track-container .play');
+                            playButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    const trackId = this.closest('.track-container').id;
+                                    loadAndPlayTrack(trackId);
+                                });
+                            });
+
+                            // Теперь открываем плейлист
+                            playlistContainer.classList.add('active');
+                            // Убираем лоадер
+                            document.querySelector('.loader-container').classList.remove('active');
+                        })
+                        .catch(error => {
+                            alert(error.message); // Показываем ошибку, если запрос занимает слишком много времени
+                            document.querySelector('.loader-container').classList.remove('active');
+                        });
                 } else {
                     // Если плейлист закрыт, показываем лоадер
                     document.querySelector('.loader-container').classList.add('active');
 
-                    setTimeout(() => {
-                        Promise.race([
-                            fetch('/api/get-tracks').then(response => response.json()),
-                            new Promise((_, reject) => setTimeout(() => reject(new Error('Время ожидания запроса истекло')), 10000))
-                        ])
-                            .then(data => {
-                                const playlistContainer = document.getElementById('playlistContainer');
-                                let htmlContent = '';
-                                data.forEach(track => {
-                                    htmlContent += `
-                            <div class="track-container" id="${track.id}">
-                                <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                                <label style="margin-left:0.5rem">"${track.name}" - "${track.author}"</label>
-                                <button class="button-yellow add" id="play_${track.id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
-                            </div>
-                        `;
-                                });
-                                playlistContainer.innerHTML = htmlContent;
-                                const playButtons = document.querySelectorAll('.track-container .play');
-                                playButtons.forEach(button => {
-                                    button.addEventListener('click', function () {
-                                        const trackId = this.closest('.track-container').id;
-                                        loadAndPlayTrack(trackId);
-                                    });
-                                });
-
-                                // Теперь открываем плейлист
-                                playlistContainer.classList.add('active');
-                                // Убираем лоадер
-                                document.querySelector('.loader-container').classList.remove('active');
-                            })
-                            .catch(error => {
-                                alert(error.message); // Показываем ошибку, если запрос занимает слишком много времени
-                                document.querySelector('.loader-container').classList.remove('active');
+                    Promise.race([
+                        fetch('/api/get-tracks').then(response => response.json()),
+                        new Promise((_, reject) => setTimeout(() => reject(new Error('Время ожидания запроса истекло')), 10000))
+                    ])
+                        .then(data => {
+                            const playlistContainer = document.getElementById('playlistContainer');
+                            let htmlContent = '';
+                            data.forEach(track => {
+                                htmlContent += `
+                        <div class="track-container" id="${track.id}">
+                            <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                            <label style="margin-left:0.5rem">"${track.name}" - "${track.author}"</label>
+                            <button class="button-yellow add" id="play_${track.id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                        </div>
+                    `;
                             });
-                    }, 10000);
+                            playlistContainer.innerHTML = htmlContent;
+                            const playButtons = document.querySelectorAll('.track-container .play');
+                            playButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    const trackId = this.closest('.track-container').id;
+                                    loadAndPlayTrack(trackId);
+                                });
+                            });
+
+                            // Теперь открываем плейлист
+                            playlistContainer.classList.add('active');
+                            // Убираем лоадер
+                            document.querySelector('.loader-container').classList.remove('active');
+                        })
+                        .catch(error => {
+                            alert(error.message); // Показываем ошибку, если запрос занимает слишком много времени
+                            document.querySelector('.loader-container').classList.remove('active');
+                        });
                 }
                 // Обновляем состояние переменной
                 isPlaylistOpen = true;
             });
         });
+
 
         closePlaylistButton.addEventListener('click', function () {
             // Закрываем плейлист
