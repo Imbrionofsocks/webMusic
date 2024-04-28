@@ -286,7 +286,7 @@
                     <div class="loader"></div>
                 </div>
                 <div class="playlist-container" id="playlistContainer">
-                    <div class="playlist-data-container" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
+                    <div class="playlist-data-container" id="1_track_pl" style="background-color:white; background-image:url(../../src/pics/dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
@@ -294,73 +294,12 @@
                         <button style="position: absolute;top:0;right:0;display:flex;padding-left:2px; align-items: center;justify-content:center"
                                 class="button-yellow close" id="close-playlist"><span>✖</span></button>
                     </div>
-                    <div class="track-container">
+                    <div class="track-container" id="">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
                         <button class="button-yellow add" id="add-to-playlist"><img src="../../src/pics/plus.svg"
                                                                                     alt="Добавить в плейлист"></button>
                     </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-                    <div class="track-container">
-                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
-                        <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -452,7 +391,31 @@
                     setTimeout(function () {
                         playlistContainer.classList.add('active');
                         document.querySelector('.loader-container').classList.remove('active');
-                        // When the server starts loading data, show the loader
+                        fetch('/api/get-tracks')
+                            .then(response => response.json())
+                            .then(data => {
+                                const playlistContainer = document.getElementById('playlistContainer');
+                                let htmlContent = '';
+                                data.forEach(track => {
+                                    htmlContent += `
+                    <div class="track-container" id="${track.id}">
+                        <button class="button-yellow play"><span class="play-icon">▶</span></button>
+                        <label style="margin-left:0.5rem">"${track.name}+" - "+${track.author}"</label>
+                        <button class="button-yellow add" id="play_${track.id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                    </div>
+                `;
+                                });
+                                playlistContainer.innerHTML = htmlContent;
+
+
+                                const playButtons = document.querySelectorAll('.track-container .play');
+                                playButtons.forEach(button => {
+                                    button.addEventListener('click', function () {
+                                        const trackId = this.closest('.track-container').id;
+                                        loadAndPlayTrack(trackId);
+                                    });
+                                });
+                            });
                     }, 900); // Измените значение времени, если необходимо
                 } else {
                     document.querySelector('.loader-container').classList.add('active');
@@ -549,6 +512,23 @@
             }
         });
     });
+        function loadAndPlayTrack(trackId) {
+            fetch(`/api/get-track/${trackId}`, {method: 'GET'}) // API, которое возвращает BLOB аудио
+                .then(response => {
+                    if (response.ok) return response.blob();
+                    throw new Error('Network response was not ok.');
+                })
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const audioPlayer = document.getElementById('song');
+                    const source = audioPlayer.querySelector('source');
+                    source.src = url;
+                    audioPlayer.load();
+                    playPause();
+                })
+                .catch(error => console.error('Error fetching or playing the track:', error));
+        }
+
 </script>
 </body>
 </html>
