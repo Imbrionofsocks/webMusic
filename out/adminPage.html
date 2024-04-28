@@ -11,13 +11,13 @@
 </head>
 <body>
 <div class="popup__bg">
-    <form class="popup" style="margin:0;overflow:hidden;" enctype="multipart/form-data" method="post" action="/">
+    <form class="popup" style="margin:0;overflow:hidden;"  enctype="multipart/form-data" method="post" action="adminPage.html" >
         <label for="trackName">Название</label>
-        <input type="text" placeholder="Введите название трека" id="trackName">
+        <input name="track" type="text" placeholder="Введите название трека" id="trackName">
         <label for="authorName">Автор</label>
-        <input type="text" placeholder="Введите автора" id="authorName">
+        <input name="author" type="text" placeholder="Введите автора" id="authorName">
         <label id="upload-label" for="file-input" >Загрузить файл</label>
-        <input id="file-input" type="file" name="file" multiple>
+        <input id="file-input" type="file" name="file">
         <button id="AddButton" class="button-yellow" type="submit">Добавить!</button>
     </form>
 </div>
@@ -285,46 +285,6 @@
         });
 
 
-
-
-    document.getElementById('AddButton').addEventListener('click',()=>{
-
-        file instanceof Blob; // true
-
-        document.getElementById('file-input').files[0]
-
-        var reader = new FileReader();
-        reader.addEventListener('load', readFile);
-        reader.readAsText(file);
-
-        console.log(file)
-
-        const Song={
-            name: document.getElementById('trackName').value,
-            author: document.getElementById('authorName').value,
-            file: document.getElementById('file-input').value
-        }
-
-        fetch(
-            "/addSong",
-            {
-                method: "POST",
-                body: JSON.stringify(Song),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            },
-        ).then(res => res.json()
-        ).then(res=>{
-            if(res.check){
-                alert("Регистрация успешна")
-
-            }else{
-                alert("email уже занят")
-
-            }
-        })
-    })
 </script>
 </body>
 </html>

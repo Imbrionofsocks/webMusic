@@ -1,5 +1,6 @@
 const sequelize = require('./config/database');
-const Task = require('./models/Users');
+const Users = require('./models/Users');
+const Song = require('./models/Song');
 
 async function syncDatabase() {
     try {
