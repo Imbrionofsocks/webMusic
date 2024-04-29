@@ -4,7 +4,7 @@ const Playlists = require('../models/Playlists');
 
 class PlaylistService {
     // Получение всех задач
-    static async getAllSongs() {
+    static async getAllPlaylist() {
         try {
             return await Playlists.findAll();
         } catch (error) {

@@ -8,6 +8,11 @@ const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage}).single('file')
 
+function getRandomIntInclusive( max) {
+
+    max = Math.floor(max);
+    return Math.floor(Math.random() * max); // Максимум и минимум включаются
+}
 
 class serverFunction {
 
@@ -46,6 +51,15 @@ class serverFunction {
         return servicePlaylist.getPlaylistById(currentId)
 
     }
+
+    static async getAllSong(){
+        return serviceSong.getAllSongs()
+    }
+
+    static async allPlaylist(){
+        return servicePlaylist.getAllPlaylist()
+    }
+    allPlaylist
 }
 
 router.get('/adminPage',(req,res)=>{
@@ -118,8 +132,13 @@ router.post('/adminPage', upload, async (req, res) => {
 
 router.post('/selectplaylist', upload, async (req, res) => {
     console.log("Запрос Post на /selectplaylist");
-    const playlist = req.body;
+    let playlist = req.body;
     console.log(playlist);
+    if(playlist.id=="randomPlaylist"){
+        const randPlaylist = await serverFunction.allPlaylist();
+        const rand= getRandomIntInclusive(randPlaylist.length);
+        playlist.id=rand;
+    }
 
     const playlistData= await serverFunction.getPlaylistData(playlist.id)
 
@@ -201,6 +220,29 @@ router.post('/allPlaylistUser', upload, async (req, res) => {
 
     console.log(result)
     res.send();
+
+})
+
+router.post('/search', upload, async (req, res) => {
+    console.log("Запрос Post на /search");
+    const search = req.body;
+    console.log(search);
+
+    const allSongs= await serverFunction.getAllSong()
+    let result = [];
+    allSongs.forEach(function (element) {
+        if(element.name.search(search))
+        result[result.length] = element
+        if(element.author.search(search))
+            result[result.length] = element
+    })
+    const uniqueNames = new Set(result);
+    let newresult=[];
+    uniqueNames.forEach(function (element){
+        newresult[newresult.length]=element
+    })
+    console.log(newresult)
+    res.send(JSON.stringify(newresult));
 
 })
 

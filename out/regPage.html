@@ -22,7 +22,7 @@
                 <input type="password" placeholder="Введите пароль" id="passField">
                 <label for="passFieldC">Подтвердите пароль</label>
                 <input type="password" placeholder="Введите пароль" id="passFieldC">
-                <button class="button-yellow" type="submit">Зарегистрироваться</button>
+                <button id="RegButton" class="button-yellow" type="submit">Зарегистрироваться</button>
             </div>
         </div>
     </div>
@@ -50,10 +50,10 @@
             ).then(res=>{
                 if(res.check){
                     alert("Регистрация успешна")
-                    window.location = "/ddd.html";
+                    window.location = "/mainPage";
                 }else{
                     alert("email уже занят")
-                    window.location = "/";
+                    window.location = "/regPage";
                 }
             })
 

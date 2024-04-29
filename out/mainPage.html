@@ -88,13 +88,13 @@
         <div class="fieldset-main-container">
             <div class="left-column">
                 <div class="fieldset-container">
-                    <div class="fieldset-inner-container" style="background-image:url(src/pics/chart-pic.png);background-position: center;
+                    <div class="fieldset-inner-container"  style="background-image:url(src/pics/chart-pic.png);background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;">
+  background-size: cover;"><div class="playlist-inner-container" id="chartPlaylist"></div>
                     </div>
-                    <div class="fieldset-inner-container" style="background-image:url(src/pics/random-playlist.jpg);background-position: center;
+                    <div class="fieldset-inner-container"  style="background-image:url(src/pics/random-playlist.jpg);background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;">
+  background-size: cover;"><div class="playlist-inner-container" id="randomPlaylist"></div>
                     </div>
                 </div>
                 <div class="fieldset-container">
@@ -377,6 +377,68 @@
     //         popup.classList.remove('active'); // И с окна
     //     }
     // });
+
+    // JavaScript для работы с полем поиска и результатами
+    const searchInput = document.getElementById('searchInput');
+    const searchDropdown = document.getElementById('searchDropdown');
+    const resultsList = document.getElementById('results-list');
+
+    function fillResults(results) {
+        resultsList.innerHTML = '';
+        results.forEach((result) => {
+            const li = document.createElement('li');
+            resultsList.appendChild(li);
+            li.innerHTML = `<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play" style="width: 36px; height: 36px;"><span class="play-icon">▶️</span></button>
+            <label style="margin-left:0.5rem;display: flex">${result}</label>
+            <button class="button-yellow add"><img style="pointer-events: none;" src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button></div>`;
+        });
+        if (results.length > 0) {
+            searchDropdown.classList.add('active');
+        } else {
+            searchDropdown.classList.remove('active');
+        }
+    }
+
+    function hideResults() {
+        searchDropdown.classList.remove('active');
+    }
+
+    searchInput.addEventListener('input', function () {
+        const query = {str: this.value.toLowerCase()};
+        fetch('/search',
+        {
+            method: "POST",
+                body: JSON.stringify(query),
+            headers: {
+            'Content-Type': 'application/json'
+        },
+        }
+        ).then(res=> res.json()
+        ).then(res=> {
+            console.log(res)
+            const results = res.filter(
+                (result) => result.toLowerCase().includes(query),
+            );
+            if (query) {
+                fillResults(results);
+            } else {
+                hideResults();
+            }
+            }
+
+        )
+
+    });
+
+    document.addEventListener('click', function (event) {
+        const isClickInside =
+            searchInput.contains(event.target) ||
+            searchDropdown.contains(event.target);
+        if (!isClickInside) {
+            hideResults();
+        }
+    });
+
 
 
     document.addEventListener('DOMContentLoaded', function () {
