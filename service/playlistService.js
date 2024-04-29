@@ -25,7 +25,7 @@ class PlaylistService {
         try {
             console.log(playlist_name)
             console.log(user_id)
-            await Playlists.create({ playlist_name, user_id });
+             await Playlists.create({ playlist_name, user_id });
             console.log('ok')
         } catch (error) {
             console.log(error)

@@ -43,19 +43,20 @@ async function generatePlaylist() {
 
 async function generatePlaylistContent() {
 
-    const allSongs = serviceSong.getAllSongs()
+    const allSongs = await serviceSong.getAllSongs()
+    console.log(allSongs)
     for (let element of allSongs) {
-        if(element.author="Maksim"){
-            await servicePlaylistContent.addSongInPlaylistContent('1',element.song_id)
+        if(element.dataValues.author=="Maksim"){
+            await servicePlaylistContent.addSongInPlaylistContent('1',element.dataValues.song_id)
         }
-        if(element.author="Дора"){
-            await servicePlaylistContent.addSongInPlaylistContent('2',element.song_id)
+        if(element.dataValues.author=="Дора"){
+            await servicePlaylistContent.addSongInPlaylistContent('2',element.dataValues.song_id)
         }
-        if(element.author="Пират"){
-            await servicePlaylistContent.addSongInPlaylistContent('3',element.song_id)
+        if(element.dataValues.author=="Пират"){
+            await servicePlaylistContent.addSongInPlaylistContent('3',element.dataValues.song_id)
         }
-        if(element.author="Shaman"){
-            await servicePlaylistContent.addSongInPlaylistContent('4',element.song_id)
+        if(element.dataValues.author=="Shaman"){
+            await servicePlaylistContent.addSongInPlaylistContent('4',element.dataValues.song_id)
         }
 
     }

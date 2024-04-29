@@ -10,13 +10,19 @@ const playlist_content = sequelize.define('playlist_content', {
     },
     playlist_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     song_id: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
-});
+},
+    {
+        uniqueKeys: {
+            Items_unique: {
+                fields: ['playlist_id', 'song_id']
+            }
+        }
+    });
 
 module.exports = playlist_content;
