@@ -1,41 +1,41 @@
-const Song = require('../models/Song');
+const Playlists = require('../models/Playlists');
 
 
-class SongService {
+
+class PlaylistService {
     // Получение всех задач
     static async getAllSongs() {
         try {
-            return await Song.findAll();
+            return await Playlists.findAll();
         } catch (error) {
             throw error;
         }
     }
 
-    static async getAllSongsAuthor(name) {
+    static async getAllPlaylistUser(condition) {
         try {
-            return await Song.findAll({ where: { author: name } });
+            return await Playlists.findAll({where: {user_id: condition}});
         } catch (error) {
             throw error;
         }
     }
 
     // Добавление новой задачи
-    static async addSong(name, author, file) {
+    static async addPlaylist(playlist_name, user_id) {
         try {
-            console.log(name)
-            console.log(author)
-            console.log(file)
-            await Song.create({ name, author, file });
-            return true
+            console.log(playlist_name)
+            console.log(user_id)
+            await Playlists.create({ playlist_name, user_id });
+            console.log('ok')
         } catch (error) {
-            return false
+            console.log(error)
         }
     }
 
     // Удаление задачи по идентификатору
     static async deleteSong(taskId) {
         try {
-            await Song.destroy({ where: { id: taskId } });
+            await Playlists.destroy({ where: { id: taskId } });
         } catch (error) {
             throw error;
         }
@@ -44,7 +44,7 @@ class SongService {
     // Получение задачи по идентификатору
     static async getSongById(song_id) {
         try {
-            return await Song.findByPk(song_id);
+            return await Playlists.findByPk(song_id);
         } catch (error) {
             throw error;
         }
@@ -53,7 +53,7 @@ class SongService {
     // Получение пользователя по условию
     static async getSongByName(condition) {
         try {
-            return await Song.findOne({ where: { name: condition } });
+            return await Playlists.findOne({ where: { name: condition } });
         } catch (error) {
             throw error;
         }
@@ -62,10 +62,10 @@ class SongService {
     // Обновление задачи по идентификатору
     static async updateSong(taskId, title) {
         try {
-            const song = await Song.findByPk(taskId);
-            if (song) {
-                song.title = title;
-                await song.save();
+            const Playlists = await Playlists.findByPk(taskId);
+            if (Playlists) {
+                Playlists.title = title;
+                await Playlists.save();
             }
         } catch (error) {
             throw error;
@@ -73,4 +73,4 @@ class SongService {
     }
 }
 
-module.exports = SongService;
+module.exports = PlaylistService;
