@@ -15,5 +15,5 @@ server.use('/', controller);
 
 
 server.listen(port, () => {
-    console.log(`Server running at  http://localhost:${port}/adminPage.html`);
+    console.log(`Server running at  http://localhost:${port}/mainPage`);
 });

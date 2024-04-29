@@ -75,13 +75,13 @@
             <div class="image"></div>
             <div class="header-search">
                 <div class="header-input">
-            <label for="searchInput">Поиск</label>
-            <input type="text" placeholder="Введите название трека" id="searchInput">
-                    </div>
-            <div class="dropdown-content" id="searchDropdown">
-                <ul id="results-list">
-                </ul>
-            </div>
+                    <label for="searchInput">Поиск</label>
+                    <input type="text" placeholder="Введите название трека" id="searchInput">
+                </div>
+                <div class="dropdown-content" id="searchDropdown">
+                    <ul id="results-list">
+                    </ul>
+                </div>
                 <div class="user-image"></div>
             </div>
         </div>
@@ -99,28 +99,28 @@
                 </div>
                 <div class="fieldset-container">
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="1" style="background-color:white; background-image:url(src/pics/maksim.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="1" style="background-color:white; background-image:url(src/pics/maksim.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="1">МАКSИМ</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="2" style="background-color:white; background-image:url(src/pics/Dora.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="2" style="background-color:white; background-image:url(src/pics/Dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="2">ДОРА</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="3" style="background-color:white;;background-image:url(src/pics/serega.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="3" style="background-color:white;;background-image:url(src/pics/serega.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
                         <label for="3">ПИРАТ</label>
                     </div>
                     <div class="fieldset-inner-container">
-                        <div class="playlist-inner-container"  id="4" style="background-color:white; background-image:url(src/pics/shaman.jpg);background-position: center;
+                        <div class="playlist-inner-container" id="4" style="background-color:white; background-image:url(src/pics/shaman.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         </div>
@@ -133,17 +133,19 @@
                     <div class="loader"></div>
                 </div>
                 <div class="playlist-container" id="playlistContainer">
-                    <div class="playlist-data-container"  style="background-color:white; background-image:url(src/pics/Dora.jpg);background-position: center;
+                    <div class="playlist-data-container" style="background-color:white; background-image:url(src/pics/Dora.jpg);background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label>Душевный плейлист</label>
-                        <button style="position: absolute;top:0;right:0;display:flex;padding-left:2px; align-items: center;justify-content:center" class="button-yellow close" id="close-playlist"><span>✖</span></button>
+                        <button style="position: absolute;top:0;right:0;display:flex;padding-left:2px; align-items: center;justify-content:center"
+                                class="button-yellow close" id="close-playlist"><span>✖</span></button>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
                         <label style="margin-left:0.5rem">Ты задолбал меня игнорить - Дора</label>
-                        <button class="button-yellow add" id="add-to-playlist"><img src="..lus.svg" alt="Добавить в плейлист"></button>
+                        <button class="button-yellow add" id="add-to-playlist"><img src="..lus.svg"
+                                                                                    alt="Добавить в плейлист"></button>
                     </div>
                     <div class="track-container">
                         <button class="button-yellow play"><span class="play-icon">▶</span></button>
@@ -212,15 +214,18 @@
         <div class="player">
             <label for="progress">Ты задолбал меня игнорить - Дора</label>
             <audio id="song">
-                <source src="..dora.mp3" type="audio/mpeg">
+                <source src="" type="audio/mp3">
             </audio>
+
             <input type="range" value="0" id="progress" style="background: #757575;">
             <div class="controls">
-                <img class="controls-butt" src="..ackward.svg" alt="backward">
-                <img class="controls-butt play" style="padding-left:1px" src="..lay.svg" alt="play" id="play" onclick="playPause()">
-                <img class="controls-butt pause" src="..ause.svg" alt="pause" id="pause" hidden onclick="playPause()">
-                <img class="controls-butt" src="..orward.svg" alt="forward">
-                <input type="range" value="100" min="0" max="100" id="volume"  style="background: #757575">
+                <img class="controls-butt" src="../src/pics/backward.svg" alt="backward">
+                <img class="controls-butt play" style="padding-left:1px" src="../src/pics/play.svg" alt="play" id="play"
+                     onclick="playPause()">
+                <img class="controls-butt pause" src="../src/pics/pause.svg" alt="pause" id="pause" hidden
+                     onclick="playPause()">
+                <img class="controls-butt" src="../src/pics/forward.svg" alt="forward">
+                <input type="range" value="100" min="0" max="100" id="volume" style="background: #757575">
             </div>
         </div>
     </div>
@@ -229,145 +234,313 @@
     let progress = document.getElementById("progress");
     let song = document.getElementById("song");
     let volume = document.getElementById("volume")
-    song.onloadeddata=function (){
-        progress.max=song.duration;
-        progress.value=song.currentTime;
-        song.volume=0.4;
-        volume.value=40;
+    song.onloadeddata = function () {
+        progress.max = song.duration;
+        progress.value = song.currentTime;
+        song.volume = 0.4;
+        volume.value = 40;
         updateVolumeGradient()
     }
-    function playPause(){
-        if(document.getElementById("pause").hidden){
+
+    function playPause() {
+        if (document.getElementById("pause").hidden) {
             song.play();
             document.getElementById("pause").removeAttribute("hidden")
             document.getElementById("play").setAttribute("hidden", "hidden")
-        }else{
+        } else {
             song.pause();
             document.getElementById("play").removeAttribute("hidden")
             document.getElementById("pause").setAttribute("hidden", "hidden")
         }
 
     }
-    if(song.play()){
-        setInterval(()=>{
-            progress.value=song.currentTime;
+
+    if (song.play()) {
+        setInterval(() => {
+            progress.value = song.currentTime;
             updateProgressGradient()
-    },500)
+        }, 500)
     }
 
-    progress.oninput = function() {
+    progress.oninput = function () {
         song.play()
         song.currentTime = progress.value;
         updateProgressGradient();
         document.getElementById("pause").removeAttribute("hidden");
         document.getElementById("play").setAttribute("hidden", "hidden");
     }
-    volume.oninput = function() {
-        song.volume = volume.value/100;
+    volume.oninput = function () {
+        song.volume = volume.value / 100;
         updateVolumeGradient();
     }
+
     function updateProgressGradient() {
         let value = (progress.value / progress.max) * 100;
         progress.style.background = `linear-gradient(to right, #ffd000 ${value}%, #757575 ${value}%)`;
     }
+
     function updateVolumeGradient() {
         volume.style.background = `linear-gradient(to right, #ffd000 ${volume.value}%, #757575 ${volume.value}%)`;
     }
-    document.addEventListener("DOMContentLoaded", function() {
-        const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
-        const playlistContainer = document.querySelector('.playlist-container');
-        const closePlaylistButton = document.getElementById('close-playlist');
-        let isPlaylistOpen = false;
 
-        playlistContainers.forEach(function(container) {
-            container.addEventListener('click', function() {
-                // Если плейлист уже открыт, сначала закрываем его
-                if (isPlaylistOpen) {
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     const playlistContainers = document.querySelectorAll('.fieldset-inner-container');
+    //     const playlistContainer = document.querySelector('.playlist-container');
+    //     const closePlaylistButton = document.getElementById('close-playlist');
+    //     let isPlaylistOpen = false;
+    //
+    //     playlistContainers.forEach(function(container) {
+    //         container.addEventListener('click', function() {
+    //             // Если плейлист уже открыт, сначала закрываем его
+    //             if (isPlaylistOpen) {
+    //                 playlistContainer.classList.remove('active');
+    //                 document.querySelector('.loader-container').classList.add('active');
+    //                 // Затем через короткий интервал времени снова открываем его
+    //                 setTimeout(function() {
+    //                     playlistContainer.classList.add('active');
+    //                     document.querySelector('.loader-container').classList.remove('active');
+    //                     // When the server starts loading data, show the loader
+    //                 }, 900 ); // Измените значение времени, если необходимо
+    //             } else {
+    //                 document.querySelector('.loader-container').classList.add('active');
+    //                 // Если плейлист закрыт, открываем его только при первом нажатии
+    //                 playlistContainer.classList.add('active');
+    //             }
+    //             // Обновляем состояние переменной
+    //             isPlaylistOpen = true;
+    //         });
+    //     });
+    //
+    //     closePlaylistButton.addEventListener('click', function() {
+    //         // Закрываем плейлист
+    //         playlistContainer.classList.remove('active');
+    //         document.querySelector('.loader-container').classList.remove('active');
+    //         // Сбрасываем состояние переменной
+    //         isPlaylistOpen = false;
+    //     });
+    // });
+    // // JavaScript для работы с полем поиска и результатами
+    // const searchInput = document.getElementById('searchInput');
+    // const searchDropdown = document.getElementById('searchDropdown');
+    // const resultsList = document.getElementById('results-list');
+    //
+    // function fillResults(results) {
+    //     resultsList.innerHTML = '';
+    //     results.forEach(result => {
+    //         const li = document.createElement('li');
+    //         resultsList.appendChild(li);
+    //         li.innerHTML=`<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play"><span class="play-icon">▶</span></button>
+    //         <label style="margin-left:0.5rem;display: flex">${result}</label>
+    //         <button class="button-yellow add"><img style="pointer-events: none;" src="..lus.svg" alt="Добавить в плейлист"></button></div>`
+    //     });
+    //     if (results.length > 0) {
+    //         searchDropdown.classList.add('active');
+    //     } else {
+    //         searchDropdown.classList.remove('active');
+    //     }
+    // }
+    //
+    // function hideResults() {
+    //     searchDropdown.classList.remove('active');
+    // }
+    //
+    // searchInput.addEventListener('input', function() {
+    //     const query = this.value.toLowerCase();
+    //     const results = ['Дора','Дора1', 'МакSим', 'SHAMAN','ПИРАТ'].filter(result => result.toLowerCase().includes(query));
+    //     if(query){
+    //         fillResults(results);
+    //     }else{
+    //         hideResults();
+    //     }
+    // });
+    //
+    // document.addEventListener('click', function(event) {
+    //     const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
+    //     if (!isClickInside) {
+    //         hideResults();
+    //     }
+    // });
+    // let popupBg = document.querySelector('.popup__bg'); // Фон попап окна
+    // let popup = document.querySelector('.popup'); // Само окно
+    //
+    // document.getElementById('mainContainer')
+    //     .addEventListener('click', event => { // Step 2
+    //         if (event.target.className === 'button-yellow add') { // Step 3
+    //             console.log('click!')
+    //             popupBg.classList.add('active'); // Добавляем класс 'active' для фона
+    //             popup.classList.add('active'); // И для самого окна
+    //         }
+    //     });
+    // document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
+    //     if(e.target === popupBg) { // Если цель клика - фот, то:
+    //         popupBg.classList.remove('active'); // Убираем активный класс с фона
+    //         popup.classList.remove('active'); // И с окна
+    //     }
+    // });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const playlistContainers = document.querySelectorAll(
+            '.fieldset-inner-container',
+        );
+        const playlistContainer = document.querySelector('.playlist-container');
+        let isPlaylistOpen = false;
+        playlistContainers.forEach(function (container) {
+            container.addEventListener('click', function (e) {
+                if (!isPlaylistOpen) {
+                    const playlistContainer =
+                        document.getElementById('playlistContainer');
+                    const playlistDataContainer = document.querySelector(
+                        '.playlist-data-container',
+                    );
+                    let playlistId
+                    if (e.target.className === "playlist-inner-container") {
+                        playlistId = e.target.id;
+                        alert(playlistId)
+                    }
+                    playlistContainer.innerHTML = '';
+                    playlistDataContainer.innerHTML = ``;
                     playlistContainer.classList.remove('active');
-                    document.querySelector('.loader-container').classList.add('active');
-                    // Затем через короткий интервал времени снова открываем его
-                    setTimeout(function() {
-                        playlistContainer.classList.add('active');
-                        document.querySelector('.loader-container').classList.remove('active');
-                        // When the server starts loading data, show the loader
-                    }, 900 ); // Измените значение времени, если необходимо
+                    document
+                        .querySelector('.loader-container')
+                        .classList.add('active');
+                    // eslint-disable-next-line no-undef
+                    fetch('/selectplaylist', {
+                        body: JSON.stringify({id: playlistId}),
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(
+                                    'Сетевая ошибка, сервер не доступен',
+                                );
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            playlistDataContainer.innerHTML = `<h3>${data.playlistName}</h3><img src="${data.playlistImage}" alt="Изображение плейлиста">`;
+                            let htmlContent = '';
+                            data.tracks.forEach((track) => {
+                                htmlContent += `
+                        <div class="track-container" id="${track.song_id}">
+                            <button class="button-yellow play"><span class="play-icon">▶️</span></button>
+                            <label style="margin-left:0.5rem">"${track.name}" - "${track.author}"</label>
+                            <button class="button-yellow add" id="play_${track.song_id}"><img src="../../src/pics/plus.svg" alt="Добавить в плейлист"></button>
+                        </div>
+                    `;
+                            });
+                            playlistDataContainer.innerHTML = `<div
+                                class="playlist-data-container"
+                                style="
+                                    background-color: white;
+                                    background-image: url(../../src/pics/userPlaylistImage.jpg);
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    background-size: cover;
+                                "
+                            >
+                                <button class="button-yellow play">
+                                    <span class="play-icon">▶️</span>
+                                </button>
+                                <label>${data.playlistName}</label>
+                                <button
+                                    style="
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        display: flex;
+                                        padding-left: 2px;
+                                        align-items: center;
+                                        justify-content: center;
+                                    "
+                                    class="button-yellow close"
+                                    id="close-playlist"
+                                >
+
+                                    <span>✖️</span>
+                                </button>
+                            </div>`;
+
+                            const trackBlock = document.createElement('div');
+                            trackBlock.style.width = '100%';
+                            trackBlock.innerHTML = htmlContent;
+                            playlistContainer.appendChild(playlistDataContainer);
+                            playlistContainer.appendChild(trackBlock);
+                            const closePlaylistButton =
+                                document.getElementById('close-playlist');
+                            closePlaylistButton.addEventListener(
+                                'click',
+                                function () {
+                                    // Закрываем плейлист
+                                    playlistContainer.classList.remove('active');
+                                    document
+                                        .querySelector('.loader-container')
+                                        .classList.remove('active');
+                                    // Сбрасываем состояние переменной
+                                    isPlaylistOpen = false;
+                                },
+                            );
+                            const playButtons = document.querySelectorAll(
+                                '.track-container .play',
+                            );
+                            playButtons.forEach((button) => {
+                                button.addEventListener('click', function () {
+                                    const trackId =
+                                        this.closest('.track-container').id;
+                                    loadAndPlayTrack(trackId);
+                                });
+                            });
+                            playlistContainer.classList.add('active');
+                            document
+                                .querySelector('.loader-container')
+                                .classList.remove('active');
+                            isPlaylistOpen = true;
+                        })
+                        .catch((error) => {
+                            alert(error.message);
+                            document
+                                .querySelector('.loader-container')
+                                .classList.remove('active');
+                        });
                 } else {
-                    document.querySelector('.loader-container').classList.add('active');
-                    // Если плейлист закрыт, открываем его только при первом нажатии
-                    playlistContainer.classList.add('active');
+                    //document.querySelector('.loader-container').classList.add('active');
+                    playlistContainer.classList.remove('active');
+                    document
+                        .querySelector('.loader-container')
+                        .classList.remove('active');
+                    // Сбрасываем состояние переменной
+                    isPlaylistOpen = false;
                 }
-                // Обновляем состояние переменной
-                isPlaylistOpen = true;
             });
         });
-
-        closePlaylistButton.addEventListener('click', function() {
-            // Закрываем плейлист
-            playlistContainer.classList.remove('active');
-            document.querySelector('.loader-container').classList.remove('active');
-            // Сбрасываем состояние переменной
-            isPlaylistOpen = false;
-        });
-    });
-    // JavaScript для работы с полем поиска и результатами
-    const searchInput = document.getElementById('searchInput');
-    const searchDropdown = document.getElementById('searchDropdown');
-    const resultsList = document.getElementById('results-list');
-
-    function fillResults(results) {
-        resultsList.innerHTML = '';
-        results.forEach(result => {
-            const li = document.createElement('li');
-            resultsList.appendChild(li);
-            li.innerHTML=`<div class="track-container" style="display: flex;align-items: center"><button class="button-yellow play"><span class="play-icon">▶</span></button>
-            <label style="margin-left:0.5rem;display: flex">${result}</label>
-            <button class="button-yellow add"><img style="pointer-events: none;" src="..lus.svg" alt="Добавить в плейлист"></button></div>`
-        });
-        if (results.length > 0) {
-            searchDropdown.classList.add('active');
-        } else {
-            searchDropdown.classList.remove('active');
-        }
-    }
-
-    function hideResults() {
-        searchDropdown.classList.remove('active');
-    }
-
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        const results = ['Дора','Дора1', 'МакSим', 'SHAMAN','ПИРАТ'].filter(result => result.toLowerCase().includes(query));
-        if(query){
-            fillResults(results);
-        }else{
-            hideResults();
-        }
     });
 
-    document.addEventListener('click', function(event) {
-        const isClickInside = searchInput.contains(event.target) || searchDropdown.contains(event.target);
-        if (!isClickInside) {
-            hideResults();
-        }
-    });
-    let popupBg = document.querySelector('.popup__bg'); // Фон попап окна
-    let popup = document.querySelector('.popup'); // Само окно
-
-    document.getElementById('mainContainer')
-        .addEventListener('click', event => { // Step 2
-            if (event.target.className === 'button-yellow add') { // Step 3
-                console.log('click!')
-                popupBg.classList.add('active'); // Добавляем класс 'active' для фона
-                popup.classList.add('active'); // И для самого окна
+    function loadAndPlayTrack(trackId) {
+        alert(trackId)
+        const song = {song_id: trackId}
+        const audioPlayer = document.getElementById("song");
+        const source = audioPlayer.querySelector('source');
+        source.setAttribute('src', `/selectSong/${trackId}`);
+        fetch(`/selectSong/${trackId}`,
+            {
+                method: "GET"
             }
-        });
-    document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
-        if(e.target === popupBg) { // Если цель клика - фот, то:
-            popupBg.classList.remove('active'); // Убираем активный класс с фона
-            popup.classList.remove('active'); // И с окна
-        }
-    });
+        ).then(res => {
+            // Создание Blob из ArrayBuffer
+            const audioBlob = new Blob([res], {type: 'audio/mp3'}); // Измените тип на нужный формат аудио
 
+            // Создание URL из Blob
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+        })
+        audioPlayer.load()
+        audioPlayer.play()
+
+
+    }
 
 
 </script>

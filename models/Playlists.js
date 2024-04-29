@@ -16,7 +16,12 @@ const playlists = sequelize.define('playlists', {
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    playlist_image:{
+        type: DataTypes.STRING,
+        allowNull: false
     }
+
 });
 
 module.exports = playlists;

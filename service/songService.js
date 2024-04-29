@@ -1,4 +1,5 @@
 const Song = require('../models/Song');
+const {addSongInPlaylistContentByAuthor} = require("../utils");
 
 
 class SongService {
@@ -22,10 +23,9 @@ class SongService {
     // Добавление новой задачи
     static async addSong(name, author, file) {
         try {
-            console.log(name)
-            console.log(author)
-            console.log(file)
-            await Song.create({ name, author, file });
+            const song = await Song.create({ name, author, file });
+            console.log(song)
+            await addSongInPlaylistContentByAuthor(song)
             return true
         } catch (error) {
             return false

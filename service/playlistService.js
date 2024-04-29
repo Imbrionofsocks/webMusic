@@ -21,11 +21,11 @@ class PlaylistService {
     }
 
     // Добавление новой задачи
-    static async addPlaylist(playlist_name, user_id) {
+    static async addPlaylist(playlist_name, user_id, playlist_image) {
         try {
             console.log(playlist_name)
             console.log(user_id)
-             await Playlists.create({ playlist_name, user_id });
+             await Playlists.create({ playlist_name, user_id, playlist_image });
             console.log('ok')
         } catch (error) {
             console.log(error)
@@ -42,9 +42,9 @@ class PlaylistService {
     }
 
     // Получение задачи по идентификатору
-    static async getSongById(song_id) {
+    static async getPlaylistById(playlist_id) {
         try {
-            return await Playlists.findByPk(song_id);
+            return await Playlists.findByPk(playlist_id);
         } catch (error) {
             throw error;
         }

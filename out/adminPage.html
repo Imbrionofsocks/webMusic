@@ -11,14 +11,14 @@
 </head>
 <body>
 <div class="popup__bg">
-    <form class="popup" style="margin:0;overflow:hidden;"  enctype="multipart/form-data" method="post" action="adminPage.html" >
+    <form class="popup" style="margin:0;overflow:hidden;"  enctype="multipart/form-data" method="post" onsubmit="window.location.reload()" >
         <label for="trackName">Название</label>
         <input name="track" type="text" placeholder="Введите название трека" id="trackName">
         <label for="authorName">Автор</label>
         <input name="author" type="text" placeholder="Введите автора" id="authorName">
         <label id="upload-label" for="file-input" >Загрузить файл</label>
         <input id="file-input" type="file" name="file">
-        <button id="AddButton" class="button-yellow" type="submit">Добавить!</button>
+        <button id="AddButton" class="button-yellow" type="submit"  formaction="/adminPage">Добавить!</button>
     </form>
 </div>
 <div class="wrapper">

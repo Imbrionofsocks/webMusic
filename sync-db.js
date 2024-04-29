@@ -7,6 +7,8 @@ const serviceUser = require("./service/usersService");
 const serviceSong = require("./service/songService");
 const servicePlaylist = require("./service/playlistService");
 const servicePlaylistContent = require("./service/playlistContentService");
+const {addSongInPlaylistContentByAuthor} = require("./utils");
+
 
 async function generateAdmin() {
 
@@ -22,19 +24,23 @@ async function generatePlaylist() {
 
     const playlists = [{
         playlist_name: 'MAKSIM',
-        user_id: '1'
+        user_id: '1',
+        playlist_image: './src/pics/maksim.jpg'
     },
         {
             playlist_name: 'ДОРА',
-            user_id: '1'
+            user_id: '1',
+            playlist_image: './src/pics/Dora.jpg'
         },
         {
             playlist_name: 'ПИРАТ',
-            user_id: '1'
+            user_id: '1',
+            playlist_image: './src/pics/serega.jpg'
         },
         {
             playlist_name: 'SHAMAN',
-            user_id: '1'
+            user_id: '1',
+            playlist_image: './src/pics/shaman.jpg'
         }
     ];
 
@@ -46,18 +52,7 @@ async function generatePlaylistContent() {
     const allSongs = await serviceSong.getAllSongs()
     console.log(allSongs)
     for (let element of allSongs) {
-        if(element.dataValues.author=="Maksim"){
-            await servicePlaylistContent.addSongInPlaylistContent('1',element.dataValues.song_id)
-        }
-        if(element.dataValues.author=="Дора"){
-            await servicePlaylistContent.addSongInPlaylistContent('2',element.dataValues.song_id)
-        }
-        if(element.dataValues.author=="Пират"){
-            await servicePlaylistContent.addSongInPlaylistContent('3',element.dataValues.song_id)
-        }
-        if(element.dataValues.author=="Shaman"){
-            await servicePlaylistContent.addSongInPlaylistContent('4',element.dataValues.song_id)
-        }
+        await addSongInPlaylistContentByAuthor(element.dataValues)
 
     }
 }
@@ -65,13 +60,13 @@ async function generatePlaylistContent() {
 
 async function syncDatabase() {
     try {
-        await sequelize.sync();
+        await sequelize.sync({alert:true});
         console.log('Database synchronized successfully.');
         const User= await generateAdmin()
         await serviceUser.addTask(User.email, User.password)
         const playlists= await generatePlaylist()
         for (let element of playlists) {
-            await servicePlaylist.addPlaylist(element.playlist_name,element.user_id)
+            await servicePlaylist.addPlaylist(element.playlist_name,element.user_id, element.playlist_image)
         }
         await generatePlaylistContent()
     } catch (error) {
@@ -82,3 +77,5 @@ async function syncDatabase() {
 }
 
 syncDatabase();
+
+module.exports = {syncDatabase};

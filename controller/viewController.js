@@ -8,6 +8,7 @@ const multer = require('multer')
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage}).single('file')
 
+
 class serverFunction {
 
     static async checkUser(email) {
@@ -41,8 +42,24 @@ class serverFunction {
         return servicePlaylist.getAllPlaylistUser(currentId)
 
     }
+    static async getPlaylistData(currentId) {
+        return servicePlaylist.getPlaylistById(currentId)
+
+    }
 }
 
+router.get('/adminPage',(req,res)=>{
+    res.sendFile('./adminPage.html', { root: './out' })
+})
+router.get('/mainPage',(req,res)=>{
+    res.sendFile('./mainPage.html', { root: './out' })
+})
+router.get('/regPage',(req,res)=>{
+    res.sendFile('./regPage.html', { root: './out' })
+})
+router.get('/authPage',(req,res)=>{
+    res.sendFile('./authPage.html', { root: './out' })
+})
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -86,15 +103,16 @@ router.post('/authorization', async (req, res) => {
 
 })
 
-router.post('/adminPage.html', upload, async (req, res) => {
-    console.log("Запрос Post на /adminPage.html");
+router.post('/adminPage', upload, async (req, res) => {
+    console.log("Запрос Post на /adminPage");
     const Song = req.file;
     console.log(Song);
 
 
     const check = await serverFunction.addNewSong(req.body.track, req.body.author, Song.buffer)
     console.log(check)
-    res.send();
+
+    res.sendFile('./adminPage.html', { root: './out' })
 
 })
 
@@ -103,25 +121,34 @@ router.post('/selectplaylist', upload, async (req, res) => {
     const playlist = req.body;
     console.log(playlist);
 
-    let allSongs = serverFunction.allSongsInPlaylist(playlist.id)
+    const playlistData= await serverFunction.getPlaylistData(playlist.id)
+
+    let allSongs = await serverFunction.allSongsInPlaylist(playlist.id)
     let arraySongId = [];
 
     allSongs.forEach(function (element) {
         arraySongId[arraySongId.length] = element.song_id
     })
 
-    let result = [];
-    arraySongId.forEach(function (element) {
-        let Song = serviceSong.getSongById(element)
-        result[result.length] = {
+    let tracks=[];
+    for (const element of arraySongId) {
+        let Song = await serviceSong.getSongById(element)
+        tracks[tracks.length] = {
             song_id: element,
             name: Song.name,
             author: Song.author
         }
-    })
+    }
+
+    const result= {
+        playlist_id:playlistData.playlist_id,
+        playlist_name: playlistData.playlist_name,
+        playlist_image: playlistData.playlist_image,
+        tracks: tracks
+    }
 
     console.log(result)
-    res.send();
+    res.send(JSON.stringify(result));
 
 })
 
@@ -130,18 +157,31 @@ router.post('/selectSong', upload, async (req, res) => {
     const Song = req.body;
     console.log(Song);
 
-    const currentSong= serverFunction.selectOneSong(Song.id)
-
+    const currentSong= await serverFunction.selectOneSong(Song.song_id)
+    console.log(currentSong)
 
     const result = {
-        id: currentSong.song_id,
+        song_id: currentSong.song_id,
         name: currentSong.name,
         author: currentSong.author,
         src: currentSong.file
     }
 
     console.log(result)
-    res.send();
+    res.send(currentSong.file);
+
+})
+
+router.get('/selectSong/:fileid', async (req, res) => {
+    console.log("Запрос Post на /selectSong");
+    const fileId= req.params['fileid']
+    console.log(fileId);
+
+    const currentSong= await serverFunction.selectOneSong(fileId)
+    console.log(currentSong)
+
+
+    res.send(currentSong.file);
 
 })
 
